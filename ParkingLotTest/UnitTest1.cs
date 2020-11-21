@@ -6,18 +6,35 @@ namespace ParkingLotTest
 
     public class UnitTest1
     {
-        [Fact]
-        public void ShouldReturnATiketGiveACustomer()
+        [Theory]
+        [InlineData("carA")]
+        public void ShouldReturnATicketGivenACar(string car)
         {
             // given
-            string expected = "1-1";
+            string expected = "ticket-1-1";
 
             // when
             ParkingBoy parkingBoy = new ParkingBoy();
-            string actual = parkingBoy.GiveTickets();
+            string actual = parkingBoy.ParkingCar(car);
 
             // then
-            Assert.Equal("1-1", actual);
+            Assert.Equal("ticket-1-1", actual);
+        }
+
+        [Theory]
+        [InlineData("ticket-1-1")]
+        public void ShouldReturnACarGivenATicket(string ticket)
+        {
+            // given
+            string expected = "carA";
+
+            // when
+            ParkingBoy parkingBoy = new ParkingBoy();
+            parkingBoy.ParkingCar(expected);
+            string actual = parkingBoy.FetchCar(ticket);
+
+            // then
+            Assert.Equal("carA", actual);
         }
     }
 }

@@ -1,23 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private List<string> ticketNumber = new List<string>()
+        private string car;
+        private string ticket;
+        private List<string> tickets = new List<string>()
         {
-            "1-1", "1-2", "1-3", "1-4", "1-5", "1-6", "1-7", "1-8", "1-9", "1-10"
+            "ticket-1-1", "ticket-1-2", "ticket-1-3", "ticket-1-4", "ticket-1-5",
+            "ticket-1-6", "ticket-1-7", "ticket-1-8", "ticket-1-9", "ticket-1-10",
         };
 
-        public void ParkingCars()
+        public string ParkingCar(string car)
         {
+            this.car = car;
+            return tickets[0];
         }
 
-        public string GiveTickets()
+        public string FetchCar(string ticket)
         {
-            return ticketNumber[0];
+            string carTicket = ParkingCar(car);
+            if (ticket != carTicket || ticket == null)
+            {
+                return "No car fetched";
+            }
+
+            return car;
         }
     }
 }
