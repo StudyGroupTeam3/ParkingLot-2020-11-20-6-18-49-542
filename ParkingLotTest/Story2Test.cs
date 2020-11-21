@@ -56,5 +56,27 @@ namespace ParkingLotTest
             // then
             Assert.Equal(expected, actual.ToString());
         }
+
+        [Fact]
+        public void Should_return_Not_enough_Position_parking_when_park_car_into_parking_lot_without_position()
+        {
+            // given
+            var boy = new Boy();
+            var car = new Car("BMW");
+            var count = 0;
+
+            // when
+            while (count < 10)
+            {
+                boy.ParkCar(car);
+                count++;
+            }
+
+            var expected = "Not enough position";
+            var actual = boy.ParkCar(car);
+
+            // then
+            Assert.Equal(expected, actual);
+        }
     }
 }

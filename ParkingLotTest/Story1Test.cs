@@ -137,7 +137,7 @@ namespace ParkingLotTest
                 count++;
             }
 
-            var expected = string.Empty;
+            var expected = "Not enough position";
             var actual = boy.ParkCar(car);
 
             // then

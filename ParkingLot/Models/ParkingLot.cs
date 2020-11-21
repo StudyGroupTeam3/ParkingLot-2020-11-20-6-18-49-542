@@ -33,7 +33,7 @@ namespace ParkingLot.Models
                 return newTicket;
             }
 
-            return string.Empty;
+            return "Not enough position";
         }
 
         public Car GetCarGivenTicket(string ticket)
