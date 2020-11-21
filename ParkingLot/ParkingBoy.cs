@@ -17,6 +17,11 @@ namespace ParkingLot
 
         public ParkingTicket Park(Car car)
         {
+            if (car == null)
+            {
+                return null;
+            }
+
             ParkingTicket parkingTicket = workedParkingLots[0].Park(car);
             if (parkingTicket != null)
             {
