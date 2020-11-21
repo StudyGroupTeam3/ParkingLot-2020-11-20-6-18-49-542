@@ -3,6 +3,13 @@ namespace ParkingLotTest
     using ParkingLot;
     using Xunit;
 
+    public class FakeParkingLot : ParkingLot
+    {
+        public FakeParkingLot(uint id) : base(id)
+        {
+        }
+    }
+
     public class ParkingLotTest
     {
         [Fact]
