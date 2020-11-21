@@ -8,14 +8,17 @@ namespace ParkingLot
     {
         public string Park(Car car, Dictionary<string, Car> parkinglot)
         {
-            if (parkinglot.ContainsKey(car.PlateNumber))
+            if (parkinglot.Count < 10 && !parkinglot.ContainsKey(car.PlateNumber))
             {
-                return null;
-            }
+                try
+                {
+                    parkinglot.Add(car.PlateNumber, car);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
 
-            if (parkinglot.Count < 10)
-            {
-                parkinglot.Add(car.PlateNumber, car);
                 return $"SuperPark: {car.PlateNumber}";
             }
 
