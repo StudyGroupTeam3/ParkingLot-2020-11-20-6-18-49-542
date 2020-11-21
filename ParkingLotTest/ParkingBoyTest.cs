@@ -26,7 +26,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            parkingBoy.ParCar(car);
+            parkingBoy.ParkCar(car);
             var isCarParked = parkingLot.HasCar(car);
 
             // then
@@ -41,7 +41,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            var parkingTicket = parkingBoy.ParCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car);
             // then
             Assert.NotNull(parkingTicket);
         }
@@ -54,7 +54,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            var parkingTicket = parkingBoy.ParCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car);
             bool isParkingTicketCorrect = parkingTicket.ParkingLotId == 0 && parkingTicket.CarId == 0;
             // then
             Assert.True(isParkingTicketCorrect);
@@ -67,11 +67,28 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var expectedCar = new Car();
-            var parkingTicket = parkingBoy.ParCar(expectedCar);
+            var parkingTicket = parkingBoy.ParkCar(expectedCar);
             // when
             var actualCar = parkingBoy.FetchCar(parkingTicket);
             // then
             Assert.Equal(expectedCar, actualCar);
+        }
+
+        [Fact]
+        public void Should_get_the_right_car_when_add_multiple_cars()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var expectedCar = new Car();
+            var anotherCar = new Car();
+            var parkingTicket = parkingBoy.ParkCar(expectedCar);
+            parkingBoy.ParkCar(anotherCar);
+            // when
+            var actualCar = parkingBoy.FetchCar(parkingTicket);
+            var isFetchedTheRightCar = expectedCar.Equals(actualCar) && !anotherCar.Equals(actualCar);
+            // then
+            Assert.True(isFetchedTheRightCar);
         }
     }
 }
