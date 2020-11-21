@@ -11,12 +11,10 @@ namespace ParkingLot
         public string Park(Car car, List<Dictionary<string, Car>> parkinglots)
         {
             int index = 0;
-            foreach (var parkinglot in parkinglots)
+
+            while (parkinglots[index].Count == parkingCapacity)
             {
-                if (parkinglot.Count == parkingCapacity)
-                {
-                    index += 1;
-                }
+                index += 1;
             }
 
             var lotIndex = index > parkinglots.Count - 1 ? parkinglots.Count - 1 : index;
