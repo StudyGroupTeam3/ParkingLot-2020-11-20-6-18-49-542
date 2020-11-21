@@ -24,9 +24,9 @@ namespace ParkingLot
             return parkingTicket;
         }
 
-        public Car Fetch(ParkingTicket parkingTicket)
+        public Car Fetch(ParkingTicket parkingTicket, ParkingLot parkingLot)
         {
-            return null;
+            return new Car(" ");
         }
 
         private void UpdateProvidedParkingTicket(ParkingTicket parkingTicket)
