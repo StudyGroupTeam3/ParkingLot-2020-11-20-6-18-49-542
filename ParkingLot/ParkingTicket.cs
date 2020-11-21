@@ -15,6 +15,11 @@ namespace ParkingLot
             this.carPlateNumber = parkedCarPlateNumber;
         }
 
+        public string GetParkingTime()
+        {
+            return this.parkingTime;
+        }
+
         public void UseTicket()
         {
             this.isUsed = true;

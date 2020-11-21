@@ -1,9 +1,10 @@
-﻿namespace ParkingLot
+﻿using System;
+
+namespace ParkingLot
 {
-    using System;
     public class Car
     {
-        private string plateNumber;
+        private readonly string plateNumber;
 
         public Car(string carPlateNumber)
         {

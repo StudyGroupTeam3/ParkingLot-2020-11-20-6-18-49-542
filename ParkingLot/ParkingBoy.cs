@@ -7,7 +7,7 @@ namespace ParkingLot
     public class ParkingBoy
     {
         private string name;
-
+        private Dictionary<string, ParkingTicket> providedParkingTickets = new Dictionary<string, ParkingTicket>();
         public ParkingBoy(string inputName)
         {
             this.name = inputName;
@@ -15,12 +15,17 @@ namespace ParkingLot
 
         public ParkingTicket Park(Car car, ParkingLot parkingLot)
         {
-            if (ParkingLotHasNoPosition(parkingLot))
+            ParkingTicket parkingTicket = null;
+            if (ParkingLotHasPosition(parkingLot))
             {
-                return GenerateParkingTicket(car);
+                if (parkingLot.Park(car))
+                {
+                    parkingTicket = GenerateParkingTicket(car);
+                    UpdateProvidedParkingTicket(parkingTicket);
+                }
             }
 
-            return null;
+            return parkingTicket;
         }
 
         public Car Fetch(ParkingTicket parkingTicket)
@@ -28,7 +33,7 @@ namespace ParkingLot
             return null;
         }
 
-        private bool ParkingLotHasNoPosition(ParkingLot parkingLot)
+        private bool ParkingLotHasPosition(ParkingLot parkingLot)
         {
             return parkingLot.HasPosition();
         }
@@ -36,6 +41,11 @@ namespace ParkingLot
         private ParkingTicket GenerateParkingTicket(Car car)
         {
             return new ParkingTicket(car.GetPlateNumber());
+        }
+
+        private void UpdateProvidedParkingTicket(ParkingTicket parkingTicket)
+        {
+            this.providedParkingTickets.TryAdd(parkingTicket.GetParkingTime(), parkingTicket);
         }
     }
 }
