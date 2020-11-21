@@ -20,10 +20,8 @@ namespace ParkingLot
                 var car = parkinglot[plateNumber];
                 return car;
             }
-            else
-            {
-                return null;
-            }
+
+            return null;
         }
     }
 }
