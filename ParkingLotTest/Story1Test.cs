@@ -128,9 +128,9 @@ namespace ParkingLotTest
             // given
             var boy = new Boy();
             var car = new Car("BWM");
+            var count = 0;
 
             // when
-            var count = 0;
             while (count < 10)
             {
                 boy.ParkCar(car);
@@ -139,6 +139,20 @@ namespace ParkingLotTest
 
             var expected = string.Empty;
             var actual = boy.ParkCar(car);
+
+            // then
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Story1_case_plus_Should_return_wrong_when_park_null()
+        {
+            // given
+            var boy = new Boy();
+
+            // when
+            var expected = "wrong car";
+            var actual = boy.ParkCar(null);
 
             // then
             Assert.Equal(expected, actual);

@@ -19,6 +19,11 @@ namespace ParkingLot.Models
 
         public string AddCarGetTicket(Car car)
         {
+            if (car == null)
+            {
+                return "wrong car";
+            }
+
             var newId = cars.Count + 1;
             if (newId < this.capacity)
             {
