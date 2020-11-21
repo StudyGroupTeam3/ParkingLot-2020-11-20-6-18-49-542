@@ -8,11 +8,12 @@ namespace ParkingLot
     {
         private string name;
         private Dictionary<string, ParkingTicket> providedParkingTickets = new Dictionary<string, ParkingTicket>();
-        private List<ParkingLot> workedParkingLots = new List<ParkingLot>();
-        public ParkingBoy(string inputName, ParkingLot parkingLot)
+        private List<ParkingLot> managedParkingLots = new List<ParkingLot>();
+        public ParkingBoy(string inputName, ParkingLot parkingLot1, ParkingLot parkingLot2)
         {
             this.name = inputName;
-            workedParkingLots.Add(parkingLot);
+            managedParkingLots.Add(parkingLot1);
+            managedParkingLots.Add(parkingLot2);
         }
 
         public ParkingTicket Park(Car car)
@@ -22,7 +23,7 @@ namespace ParkingLot
                 return null;
             }
 
-            ParkingTicket parkingTicket = workedParkingLots[0].Park(car);
+            ParkingTicket parkingTicket = managedParkingLots[0].Park(car);
             if (parkingTicket != null)
             {
                 UpdateProvidedParkingTicket(parkingTicket);

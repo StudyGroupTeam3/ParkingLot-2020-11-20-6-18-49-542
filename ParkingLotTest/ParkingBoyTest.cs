@@ -13,8 +13,9 @@ namespace ParkingLotTest
         {
             // given
             var car = new Car("JAA8888");
-            var parkingLot = new ParkingLot("ParkingLotOne");
-            var parkingBoy = new ParkingBoy("Jack", parkingLot);
+            var parkingLot1 = new ParkingLot("ParkingLotOne");
+            var parkingLot2 = new ParkingLot("ParkingLotOne");
+            var parkingBoy = new ParkingBoy("Jack", parkingLot1, parkingLot2);
 
             // when
             var parkingTicket = parkingBoy.Park(car);
@@ -28,8 +29,9 @@ namespace ParkingLotTest
         {
             // given
             Car car = null;
-            var parkingLot = new ParkingLot("ParkingLotOne");
-            var parkingBoy = new ParkingBoy("Jack", parkingLot);
+            var parkingLot1 = new ParkingLot("ParkingLotOne");
+            var parkingLot2 = new ParkingLot("ParkingLotOne");
+            var parkingBoy = new ParkingBoy("Jack", parkingLot1, parkingLot2);
 
             // when
             var parkingTicket = parkingBoy.Park(car);
@@ -44,8 +46,9 @@ namespace ParkingLotTest
             // given
             // given
             var parkedCar = new Car("JAA8888");
-            var parkingLot = new ParkingLot("ParkingLotOne");
-            var parkingBoy = new ParkingBoy("Jack", parkingLot);
+            var parkingLot1 = new ParkingLot("ParkingLotOne");
+            var parkingLot2 = new ParkingLot("ParkingLotOne");
+            var parkingBoy = new ParkingBoy("Jack", parkingLot1, parkingLot2);
             var parkingTicket = parkingBoy.Park(parkedCar);
 
             // when
