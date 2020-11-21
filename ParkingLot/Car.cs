@@ -13,7 +13,7 @@ namespace ParkingLot
 
         public string GetPlateNumber()
         {
-            return plateNumber;
+            return this.plateNumber;
         }
     }
 }
