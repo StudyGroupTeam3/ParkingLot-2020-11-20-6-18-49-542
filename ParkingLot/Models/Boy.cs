@@ -6,14 +6,29 @@ namespace ParkingLot.Models
 {
     public class Boy
     {
-        public string ParkCar(Car car)
+        private ParkingLot parkingLot;
+        public Boy()
         {
-            return $"Brand: {car.Brand}\nTime: {DateTime.Now}";
+            parkingLot = new ParkingLot();
         }
 
-        public string FetchCar(string ticket)
+        public string ParkCar(Car car)
         {
-            return "BWM";
+            var ticket = parkingLot.AddCarGetTicket(car);
+
+            return ticket;
+        }
+
+        public Car FetchCar(string ticket)
+        {
+            var car = parkingLot.GetCarGivenTicket(ticket);
+
+            return car;
+        }
+
+        public int GetCarsCount()
+        {
+            return parkingLot.LoadCars().Count;
         }
     }
 }

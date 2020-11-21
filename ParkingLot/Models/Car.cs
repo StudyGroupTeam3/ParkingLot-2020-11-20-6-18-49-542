@@ -14,4 +14,16 @@ namespace ParkingLot.Models
 
         public string Brand { get; }
     }
+
+    public class CarParked
+    {
+        public CarParked(string ticket, Car car)
+        {
+            Ticket = ticket;
+            Car = car;
+        }
+
+        public Car Car { get; }
+        public string Ticket { get; }
+    }
 }
