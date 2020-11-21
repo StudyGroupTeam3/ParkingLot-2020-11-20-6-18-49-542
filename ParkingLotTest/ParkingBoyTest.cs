@@ -1,3 +1,5 @@
+using System;
+
 namespace ParkingLotTest
 {
     using Moq;
@@ -13,8 +15,6 @@ namespace ParkingLotTest
             var car = new Car("JAA8888");
             var parkingBoy = new ParkingBoy("Jack");
             var parkingLot = new ParkingLot("ParkingLotOne");
-
-            var mockSecretGenerator = new Mock<ParkingLot>();
 
             // when
             var parkingTicket = parkingBoy.Park(car, parkingLot);
