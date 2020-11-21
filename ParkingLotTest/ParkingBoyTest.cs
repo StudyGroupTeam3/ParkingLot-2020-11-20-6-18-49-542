@@ -34,7 +34,7 @@ namespace ParkingLotTest
             var parkingTicket = parkingBoy.Park(parkedCar, parkingLot);
 
             // when
-            var fetchedCar = parkingBoy.Fetch(parkingTicket, parkingLot);
+            var fetchedCar = parkingBoy.Fetch(parkingTicket);
 
             // then
             Assert.IsType<Car>(fetchedCar);

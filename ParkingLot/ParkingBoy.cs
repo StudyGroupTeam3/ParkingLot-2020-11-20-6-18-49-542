@@ -24,13 +24,12 @@ namespace ParkingLot
             return parkingTicket;
         }
 
-        public Car Fetch(ParkingTicket parkingTicket, ParkingLot parkingLot)
+        public Car Fetch(ParkingTicket parkingTicket)
         {
             Car fetchedCar = null;
-            var a = parkingTicket.GetIsUsed();
             if (IsProvidedParkingTicket(parkingTicket) && !parkingTicket.GetIsUsed())
             {
-                fetchedCar = parkingLot.Fetch(parkingTicket);
+                fetchedCar = parkingTicket.GetParkingLot().Fetch(parkingTicket);
                 if (fetchedCar != null)
                 {
                     parkingTicket.UseTicket();
