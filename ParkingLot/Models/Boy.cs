@@ -23,7 +23,7 @@ namespace ParkingLot.Models
         {
             var car = parkingLot.GetCarGivenTicket(ticket);
 
-            return car;
+            return car ?? null;
         }
 
         public int GetCarsCount()

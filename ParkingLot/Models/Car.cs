@@ -13,6 +13,11 @@ namespace ParkingLot.Models
         }
 
         public string Brand { get; }
+
+        public override string ToString()
+        {
+            return Brand;
+        }
     }
 
     public class CarParked

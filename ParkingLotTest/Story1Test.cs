@@ -41,7 +41,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void AC2_Should_park_multiple_cars()
+        public void AC2_Should_park_multiple_cars_fetch_right_car_by_ticket()
         {
             // given
             var boy = new Boy();
@@ -67,6 +67,23 @@ namespace ParkingLotTest
             Assert.Equal(expected1, actual1.Brand);
             Assert.NotEqual(expected2, actual2.Brand);
             Assert.Equal(expected3CountOfCars, actual3CountOfCars);
+        }
+
+        [Fact]
+        public void Story1_AC3_Should_fetch_wrong_when_given_wrong_ticket()
+        {
+            // given
+            var boy = new Boy();
+            var car = new Car("BWM");
+
+            // when
+            boy.ParkCar(car);
+
+            Car expected = null;
+            var actual = boy.FetchCar("wrong ticket");
+
+            // then
+            Assert.Equal(expected, actual);
         }
     }
 }
