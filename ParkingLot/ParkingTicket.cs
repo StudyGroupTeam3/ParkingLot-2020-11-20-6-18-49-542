@@ -27,6 +27,11 @@ namespace ParkingLot
             return this.carPlateNumber;
         }
 
+        public bool GetIsUsed()
+        {
+            return this.isUsed;
+        }
+
         public void UseTicket()
         {
             this.isUsed = true;

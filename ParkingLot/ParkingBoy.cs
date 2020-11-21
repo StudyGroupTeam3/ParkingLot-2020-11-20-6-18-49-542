@@ -26,12 +26,28 @@ namespace ParkingLot
 
         public Car Fetch(ParkingTicket parkingTicket, ParkingLot parkingLot)
         {
-            return new Car(" ");
+            Car fetchedCar = null;
+            var a = parkingTicket.GetIsUsed();
+            if (IsProvidedParkingTicket(parkingTicket) && !parkingTicket.GetIsUsed())
+            {
+                fetchedCar = parkingLot.Fetch(parkingTicket);
+                if (fetchedCar != null)
+                {
+                    parkingTicket.UseTicket();
+                }
+            }
+
+            return fetchedCar;
         }
 
         private void UpdateProvidedParkingTicket(ParkingTicket parkingTicket)
         {
             this.providedParkingTickets.TryAdd(parkingTicket.GetParkingTime(), parkingTicket);
+        }
+
+        private bool IsProvidedParkingTicket(ParkingTicket parkingTicket)
+        {
+            return this.providedParkingTickets.ContainsKey(parkingTicket.GetParkingTime());
         }
     }
 }
