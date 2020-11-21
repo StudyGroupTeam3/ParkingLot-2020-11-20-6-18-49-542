@@ -8,7 +8,7 @@ namespace ParkingLotTest
         [Fact]
         public void Test1()
         {
-            var class1 = new Class1();
+            var class1 = new Car();
             Assert.NotNull(class1);
         }
     }
