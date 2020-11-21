@@ -38,6 +38,21 @@ namespace ParkingLot
             return null;
         }
 
+        public Car Fetch(string ticket, Dictionary<string, Car> parkinglot, out string message)
+        {
+            var plateNumber = ticket.Split(" ")[1];
+            if (parkinglot.ContainsKey(plateNumber))
+            {
+                var car = parkinglot[plateNumber];
+                parkinglot.Remove(plateNumber);
+                message = "Your car is parked successfully";
+                return car;
+            }
+
+            message = "Unrecognized parking ticket.";
+            return null;
+        }
+
         public Car Fetch(Dictionary<string, Car> parkinglot)
         {
             return null;
