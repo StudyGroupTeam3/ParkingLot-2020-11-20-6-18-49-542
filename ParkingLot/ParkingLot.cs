@@ -15,8 +15,9 @@
             this.id = id;
         }
 
+        public uint ParkingLotId => this.id;
+        public uint CarId => this.carId;
         protected SortedDictionary<uint, ICar> ParkingLotPlaces => this.parkingLotPlaces;
-        protected uint CarId => this.carId;
 
         public void AddCar(ICar car)
         {

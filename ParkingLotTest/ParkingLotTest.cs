@@ -11,8 +11,6 @@ namespace ParkingLotTest
         {
         }
 
-        public new uint CarId => base.CarId;
-
         public new bool HasCar(ICar car)
         {
             return this.ParkingLotPlaces.Where(idCarPair => idCarPair.Value.Equals(car)).ToList().Count == 1;

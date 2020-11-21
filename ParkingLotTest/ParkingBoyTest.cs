@@ -32,5 +32,32 @@ namespace ParkingLotTest
             // then
             Assert.True(isCarParked);
         }
+
+        [Fact]
+        public void Should_return_parking_ticket_when_parked_a_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            // when
+            var parkingTicket = parkingBoy.ParkingCar(car);
+            // then
+            Assert.NotNull(parkingTicket);
+        }
+
+        [Fact]
+        public void Should_return_correct_parking_ticket_when_parked_a_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            // when
+            var parkingTicket = parkingBoy.ParkingCar(car);
+            bool isParkingTicketCorrect = parkingTicket.ParkingLotId == 0 && parkingTicket.CarId == 0;
+            // then
+            Assert.True(isParkingTicketCorrect);
+        }
     }
 }

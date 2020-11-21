@@ -13,9 +13,12 @@ namespace ParkingLot
             this.parkingLot = parkingLot;
         }
 
-        public void ParkingCar(ICar car)
+        public ParkingTicket ParkingCar(ICar car)
         {
+            uint carId = this.parkingLot.CarId;
+            uint parkingLotId = this.parkingLot.ParkingLotId;
             this.parkingLot.AddCar(car);
+            return new ParkingTicket(parkingLotId, carId);
         }
     }
 }
