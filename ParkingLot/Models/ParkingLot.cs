@@ -7,41 +7,36 @@ namespace ParkingLot.Models
 {
     public class ParkingLot
     {
+        private readonly int capacity;
         private List<CarParked> cars = new List<CarParked>();
-        private int capacity = 10;
+        private int lotNumber;
+        private int parkingNumber = 1;
 
-        public List<CarParked> LoadCars()
+        public ParkingLot(int lotNumber, int capacity)
         {
-            var carsList = cars;
-
-            return carsList;
+            this.lotNumber = lotNumber;
+            this.capacity = capacity;
         }
+
+        public int Capacity => capacity;
+        public int LotNumber => lotNumber;
+        public int CarsCount => cars.Count;
 
         public string AddCarGetTicket(Car car)
         {
-            if (car == null)
-            {
-                return "wrong car";
-            }
+            var ticket = $"{lotNumber.ToString().PadLeft(2, '0')}{parkingNumber.ToString().PadLeft(3, '0')}";
+            cars.Add(new CarParked(ticket, car));
+            parkingNumber++;
 
-            var newId = cars.Count + 1;
-            if (newId < this.capacity)
-            {
-                var newTicket = newId.ToString().PadLeft(3, '0');
-                cars.Add(new CarParked(newTicket, car));
-
-                return newTicket;
-            }
-
-            return "Not enough position";
+            return ticket;
         }
 
         public Car GetCarGivenTicket(string ticket)
         {
-            var carFetched = cars.FirstOrDefault(car => car.Ticket == ticket)?.Car;
-            cars.Remove(cars.FirstOrDefault(car => car.Ticket == ticket));
+            var carFetched = cars.FirstOrDefault(car => car.Ticket == ticket);
+            cars.Remove(carFetched);
 
-            return carFetched;
+            return carFetched?.Car;
         }
     }
 }

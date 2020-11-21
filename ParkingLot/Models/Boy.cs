@@ -1,22 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ParkingLot.Models
 {
     public class Boy
     {
-        private ParkingLot parkingLot;
+        private List<ParkingLot> parkingLots = new List<ParkingLot>();
         public Boy()
         {
-            parkingLot = new ParkingLot();
+            parkingLots.Add(new ParkingLot(1, 10));
+            parkingLots.Add(new ParkingLot(2, 10));
         }
+
+        public List<ParkingLot> ParkingLots => parkingLots;
 
         public string ParkCar(Car car)
         {
-            var ticket = parkingLot.AddCarGetTicket(car);
+            if (car == null)
+            {
+                return "wrong car";
+            }
 
-            return ticket;
+            var usableLot = parkingLots.FirstOrDefault(lot => lot.Capacity > lot.CarsCount);
+
+            if (usableLot != null)
+            {
+                var ticket = usableLot.AddCarGetTicket(car);
+                return ticket;
+            }
+
+            return "Not enough position";
         }
 
         public Car FetchCar(string ticket)
@@ -26,14 +41,15 @@ namespace ParkingLot.Models
                 return new Car("Please provide your parking ticket");
             }
 
-            var car = parkingLot.GetCarGivenTicket(ticket);
+            var lotIndex = int.Parse(ticket[..2]) - 1;
+            var car = parkingLots[lotIndex].GetCarGivenTicket(ticket);
 
             return car ?? new Car("Unrecognized parking ticket");
         }
 
         public int GetCarsCount()
         {
-            return parkingLot.LoadCars().Count;
+            return parkingLots.Select(lot => lot.CarsCount).Sum();
         }
     }
 }
