@@ -16,5 +16,15 @@ namespace ParkingLotTest
             // then
             Assert.NotNull(parkingBoy);
         }
+
+        [Fact]
+        public void Should_return_ticket_when_parked_a_car()
+        {
+            // given
+            var parkingBoy = new ParkingBoy();
+            // when
+            // then
+            Assert.NotNull(parkingBoy);
+        }
     }
 }
