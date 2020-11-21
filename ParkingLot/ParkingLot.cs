@@ -38,6 +38,11 @@
             return this.parkingLotPlaces.ContainsKey(carId);
         }
 
+        public bool IsCarIdProvided(uint carId)
+        {
+            return carId < this.carId;
+        }
+
         private uint GenerateCarId()
         {
             return this.carId++;

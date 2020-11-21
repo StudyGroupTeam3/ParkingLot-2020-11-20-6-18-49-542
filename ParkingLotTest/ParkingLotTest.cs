@@ -119,7 +119,33 @@ namespace ParkingLotTest
             fakeParkingLot.AddCar(car);
             var carId = fakeParkingLot.CarId;
             // then
-            Assert.Equal((uint)1, carId);
+            Assert.Equal(1U, carId);
+        }
+
+        [Fact]
+        public void Should_return_true_when_use_IsCarIdGenerated_to_check_if_a_provided_carId_was_provided()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var car = new Car();
+            // when
+            parkingLot.AddCar(car);
+            var isCarIdGenerated = parkingLot.IsCarIdProvided(0);
+            // then
+            Assert.True(isCarIdGenerated);
+        }
+
+        [Fact]
+        public void Should_return_false_when_use_IsCarIdGenerated_to_check_if_a_carId_was_not_provided()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var car = new Car();
+            // when
+            parkingLot.AddCar(car);
+            var isCarIdGenerated = parkingLot.IsCarIdProvided(1);
+            // then
+            Assert.False(isCarIdGenerated);
         }
     }
 }
