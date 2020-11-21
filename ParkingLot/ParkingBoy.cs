@@ -15,8 +15,15 @@ namespace ParkingLot
         public Car Fetch(string ticket, Dictionary<string, Car> parkinglot)
         {
             var plateNumber = ticket.Split(" ")[1];
-            var car = parkinglot[plateNumber];
-            return car;
+            if (parkinglot.ContainsKey(plateNumber))
+            {
+                var car = parkinglot[plateNumber];
+                return car;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
