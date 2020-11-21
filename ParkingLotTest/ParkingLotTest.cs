@@ -45,13 +45,15 @@ namespace ParkingLotTest
         {
             // given
             var parkingLot = new ParkingLot("ParkingLotOne");
-            ParkingTicket parkingTicket = new ParkingTicket("JA8888", "ParkingLotOne");
+            var parkedCar = new Car("JA8888");
+            ParkingTicket parkingTicket = parkingLot.Park(parkedCar);
 
             // when
-            var car = parkingLot.Fetch(parkingTicket);
+            var fetchedCar = parkingLot.Fetch(parkingTicket);
 
             // then
-            Assert.IsType<Car>(car);
+            Assert.IsType<Car>(fetchedCar);
+            Assert.Equal(parkedCar, fetchedCar);
         }
     }
 }
