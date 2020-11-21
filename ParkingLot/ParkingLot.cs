@@ -6,8 +6,8 @@
 
     public class ParkingLot
     {
-        private uint id;
-        private SortedDictionary<uint, ICar> parkingLotPlaces = new SortedDictionary<uint, ICar>();
+        private readonly uint id;
+        private readonly SortedDictionary<uint, ICar> parkingLotPlaces = new SortedDictionary<uint, ICar>();
 
         public ParkingLot(uint id)
         {
@@ -19,6 +19,11 @@
         public void AddCar(ICar car)
         {
             this.parkingLotPlaces[(uint)parkingLotPlaces.Count] = car;
+        }
+
+        public ICar GetCar(uint carId)
+        {
+            return this.parkingLotPlaces[carId];
         }
     }
 }

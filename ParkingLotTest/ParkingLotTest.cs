@@ -41,5 +41,18 @@ namespace ParkingLotTest
             // then
             Assert.True(isCarAdded);
         }
+
+        [Fact]
+        public void Should_get_car_from_parkingLotPlaces_when_GetCar_by_carId()
+        {
+            // given
+            var fakeParkingLot = new FakeParkingLot(0);
+            var expectedCar = new Car();
+            // when
+            fakeParkingLot.AddCar(expectedCar);
+            var actualCar = fakeParkingLot.GetCar(0);
+            // then
+            Assert.Equal(expectedCar, actualCar);
+        }
     }
 }
