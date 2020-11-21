@@ -24,6 +24,21 @@ namespace ParkingLotTest
         }
 
         [Fact]
+        public void Should_Park_Return_Null_When_Park_Null_Car()
+        {
+            // given
+            Car car = null;
+            var parkingLot = new ParkingLot("ParkingLotOne");
+            var parkingBoy = new ParkingBoy("Jack", parkingLot);
+
+            // when
+            var parkingTicket = parkingBoy.Park(car);
+
+            // then
+            Assert.Null(parkingTicket);
+        }
+
+        [Fact]
         public void Should_Fetch_Return_Car_With_Valid_ParkingTicket()
         {
             // given
