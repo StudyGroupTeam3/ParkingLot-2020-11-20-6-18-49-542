@@ -26,7 +26,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            parkingBoy.ParkingCar(car);
+            parkingBoy.ParCar(car);
             var isCarParked = parkingLot.HasCar(car);
 
             // then
@@ -41,7 +41,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            var parkingTicket = parkingBoy.ParkingCar(car);
+            var parkingTicket = parkingBoy.ParCar(car);
             // then
             Assert.NotNull(parkingTicket);
         }
@@ -54,7 +54,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            var parkingTicket = parkingBoy.ParkingCar(car);
+            var parkingTicket = parkingBoy.ParCar(car);
             bool isParkingTicketCorrect = parkingTicket.ParkingLotId == 0 && parkingTicket.CarId == 0;
             // then
             Assert.True(isParkingTicketCorrect);
