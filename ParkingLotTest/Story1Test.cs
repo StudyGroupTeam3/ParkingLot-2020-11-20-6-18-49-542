@@ -59,12 +59,11 @@ namespace ParkingLotTest
             var actual = boy.GetCarsCount();
 
             // then
-
             Assert.Equal(expected, actual);
         }
 
         [Fact]
-        public void Story1_AC2_Should_park_multiple_cars_fetch_right_car_by_ticket()
+        public void Story1_AC2_Should_fetch_right_car_by_ticket()
         {
             // given
             var boy = new Boy();
