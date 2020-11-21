@@ -19,8 +19,10 @@ namespace ParkingLot
 
         public ParkingTicket Park(Car car)
         {
+            Printer printer = new Printer();
             if (car == null)
             {
+                printer.PrintNullCarErrorMessage();
                 return null;
             }
 

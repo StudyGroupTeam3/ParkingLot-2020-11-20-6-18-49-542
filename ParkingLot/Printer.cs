@@ -20,5 +20,10 @@ namespace ParkingLot
         {
             Console.WriteLine("Not enough position");
         }
+
+        public void PrintNullCarErrorMessage()
+        {
+            Console.WriteLine("Unrecognized car");
+        }
     }
 }
