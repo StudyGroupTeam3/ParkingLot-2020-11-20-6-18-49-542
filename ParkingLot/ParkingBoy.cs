@@ -23,10 +23,17 @@ namespace ParkingLot
                 return null;
             }
 
-            ParkingTicket parkingTicket = managedParkingLots[0].Park(car);
-            if (parkingTicket != null)
+            ParkingTicket parkingTicket = null;
+            foreach (var parkingLot in managedParkingLots)
             {
+                parkingTicket = parkingLot.Park(car);
+                if (parkingTicket == null)
+                {
+                    continue;
+                }
+
                 UpdateProvidedParkingTicket(parkingTicket);
+                break;
             }
 
             return parkingTicket;
