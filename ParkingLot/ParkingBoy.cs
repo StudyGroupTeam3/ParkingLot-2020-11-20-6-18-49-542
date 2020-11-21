@@ -38,11 +38,6 @@ namespace ParkingLot
             return parkingLot.HasPosition();
         }
 
-        private ParkingTicket GenerateParkingTicket(Car car)
-        {
-            return new ParkingTicket(car.GetPlateNumber());
-        }
-
         private void UpdateProvidedParkingTicket(ParkingTicket parkingTicket)
         {
             this.providedParkingTickets.TryAdd(parkingTicket.GetParkingTime(), parkingTicket);

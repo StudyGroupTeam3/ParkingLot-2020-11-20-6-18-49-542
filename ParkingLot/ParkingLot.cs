@@ -17,9 +17,14 @@ namespace ParkingLot
             this.name = inputName;
         }
 
-        public bool Park(Car carToPark)
+        public ParkingTicket Park(Car car)
         {
-            return cars.TryAdd(carToPark.GetPlateNumber(), carToPark);
+            if (cars.TryAdd(car.GetPlateNumber(), car))
+            {
+                return GenerateParkingTicket(car);
+            }
+
+            return null;
         }
 
         public Car Fetch(ParkingTicket parkingTicket)
@@ -35,6 +40,11 @@ namespace ParkingLot
         public bool HasPosition()
         {
             return this.hasPosition;
+        }
+
+        private ParkingTicket GenerateParkingTicket(Car car)
+        {
+            return new ParkingTicket(car.GetPlateNumber());
         }
     }
 }
