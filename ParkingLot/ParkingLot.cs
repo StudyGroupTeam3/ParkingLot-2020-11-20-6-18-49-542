@@ -20,7 +20,7 @@
 
         public void AddCar(ICar car)
         {
-            this.parkingLotPlaces[(uint)parkingLotPlaces.Count] = car;
+            this.parkingLotPlaces[this.GenerateCarId()] = car;
         }
 
         public ICar GetCar(uint carId)
@@ -40,8 +40,7 @@
 
         private uint GenerateCarId()
         {
-            this.carId += 1;
-            return this.carId;
+            return this.carId++;
         }
     }
 }
