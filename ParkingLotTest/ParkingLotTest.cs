@@ -12,7 +12,7 @@ namespace ParkingLotTest
         {
         }
 
-        public bool HasCar(ICar car)
+        public new bool HasCar(ICar car)
         {
             return this.ParkingLotPlaces.Where(idCarPair => idCarPair.Value.Equals(car)).ToList().Count == 1;
         }
@@ -53,6 +53,19 @@ namespace ParkingLotTest
             var actualCar = fakeParkingLot.GetCar(0);
             // then
             Assert.Equal(expectedCar, actualCar);
+        }
+
+        [Fact]
+        public void Should_return_true_when_use_HasCar_to_check_if_car_is_already_parked_in_this_ParkingLot()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var car = new Car();
+            // when
+            parkingLot.AddCar(car);
+            var hasCar = parkingLot.HasCar(car);
+            // then
+            Assert.True(hasCar);
         }
     }
 }

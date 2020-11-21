@@ -25,5 +25,10 @@
         {
             return this.parkingLotPlaces[carId];
         }
+
+        public bool HasCar(ICar car)
+        {
+            return this.parkingLotPlaces.Where(idCarPair => idCarPair.Value.Equals(car)).ToList().Count > 0;
+        }
     }
 }
