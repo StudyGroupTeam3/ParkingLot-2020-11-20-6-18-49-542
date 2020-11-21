@@ -57,5 +57,11 @@ namespace ParkingLot
         {
             return null;
         }
+
+        public Car Fetch(Dictionary<string, Car> parkinglot, out string message)
+        {
+            message = "Please provide your parking ticket.";
+            return null;
+        }
     }
 }
