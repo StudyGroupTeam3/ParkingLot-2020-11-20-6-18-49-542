@@ -10,7 +10,7 @@ namespace ParkingLotTest
     public class Story1Test
     {
         [Fact]
-        public void AC1_Should_return_ticket_when_park_car()
+        public void Story1_AC1_Should_return_ticket_when_park_car()
         {
             // given
             var boy = new Boy();
@@ -25,7 +25,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void AC1_Should_return_car_when_give_ticket()
+        public void Story1_AC1_Should_return_car_when_give_ticket()
         {
             // given
             var boy = new Boy();
@@ -41,7 +41,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void AC2_Should_park_multiple_cars_fetch_right_car_by_ticket()
+        public void Story1_AC2_Should_park_multiple_cars_fetch_right_car_by_ticket()
         {
             // given
             var boy = new Boy();
