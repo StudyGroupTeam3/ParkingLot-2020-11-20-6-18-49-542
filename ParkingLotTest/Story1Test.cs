@@ -15,7 +15,7 @@ namespace ParkingLotTest
         {
             // given
             var boy = new Boy();
-            var car = new Car("BWM");
+            var car = new Car("BMW");
 
             // when
             var expected = "001";
@@ -30,11 +30,11 @@ namespace ParkingLotTest
         {
             // given
             var boy = new Boy();
-            var car = new Car("BWM");
+            var car = new Car("BMW");
 
             // when
             var ticket = boy.ParkCar(car);
-            var expected = "BWM";
+            var expected = "BMW";
             var actual = boy.FetchCar(ticket);
 
             // then
@@ -46,7 +46,7 @@ namespace ParkingLotTest
         {
             // given
             var boy = new Boy();
-            var car1 = new Car("BWM");
+            var car1 = new Car("BMW");
             var car2 = new Car("Benz");
             var car3 = new Car("Porsche");
 
@@ -67,7 +67,7 @@ namespace ParkingLotTest
         {
             // given
             var boy = new Boy();
-            var car1 = new Car("BWM");
+            var car1 = new Car("BMW");
             var car2 = new Car("Benz");
             var car3 = new Car("Porsche");
 
@@ -76,7 +76,7 @@ namespace ParkingLotTest
             var ticket2 = boy.ParkCar(car2);
             var ticket3 = boy.ParkCar(car3);
 
-            var expected1 = "BWM";
+            var expected1 = "BMW";
             var actual1 = boy.FetchCar(ticket1);
 
             var expected2 = "Benz";
@@ -92,16 +92,16 @@ namespace ParkingLotTest
         {
             // given
             var boy = new Boy();
-            var car = new Car("BWM");
+            var car = new Car("BMW");
 
             // when
             boy.ParkCar(car);
 
-            Car expected = null;
+            var expected = "Unrecognized parking ticket";
             var actual = boy.FetchCar("wrong ticket");
 
             // then
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual.ToString());
         }
 
         [Fact]
@@ -109,17 +109,17 @@ namespace ParkingLotTest
         {
             // given
             var boy = new Boy();
-            var car = new Car("BWM");
+            var car = new Car("BMW");
 
             // when
             var ticket = boy.ParkCar(car);
             boy.FetchCar(ticket);
 
-            Car expected = null;
+            var expected = "Unrecognized parking ticket";
             var actual = boy.FetchCar(ticket);
 
             // then
-            Assert.Equal(expected, actual);
+            Assert.Equal(expected, actual.ToString());
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace ParkingLotTest
         {
             // given
             var boy = new Boy();
-            var car = new Car("BWM");
+            var car = new Car("BMW");
             var count = 0;
 
             // when

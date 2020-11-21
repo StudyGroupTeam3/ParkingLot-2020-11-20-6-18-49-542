@@ -1,0 +1,43 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using ParkingLot.Models;
+using Xunit;
+
+namespace ParkingLotTest
+{
+    public class Story2Test
+    {
+        [Fact]
+        public void Should_return_Unrecognized_parking_ticket_when_give_wrong_ticket()
+        {
+            // given
+            var boy = new Boy();
+
+            // when]
+            var expected = "Unrecognized parking ticket";
+            var actual = boy.FetchCar("103");
+
+            // then
+            Assert.Equal(expected, actual.ToString());
+        }
+
+        [Fact]
+        public void Should_return_Unrecognized_parking_ticket_when_give_ticket_used()
+        {
+            // given
+            var boy = new Boy();
+            var car = new Car("BMW");
+
+            // when
+            boy.ParkCar(car);
+            boy.FetchCar("001");
+
+            var expected = "Unrecognized parking ticket";
+            var actual = boy.FetchCar("001");
+
+            // then
+            Assert.Equal(expected, actual.ToString());
+        }
+    }
+}

@@ -23,7 +23,7 @@ namespace ParkingLot.Models
         {
             var car = parkingLot.GetCarGivenTicket(ticket);
 
-            return car ?? null;
+            return car ?? new Car("Unrecognized parking ticket");
         }
 
         public int GetCarsCount()
