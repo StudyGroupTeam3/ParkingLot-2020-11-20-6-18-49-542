@@ -45,6 +45,16 @@ namespace ParkingLot
             return null;
         }
 
+        public Dictionary<string, Car> GetCars()
+        {
+            return cars;
+        }
+
+        public int GetCapacity()
+        {
+            return capacity;
+        }
+
         private void UpdateUsageCondition()
         {
             this.hasPosition = cars.Count < this.capacity;

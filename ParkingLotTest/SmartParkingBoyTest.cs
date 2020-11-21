@@ -6,7 +6,7 @@ namespace ParkingLotTest
     using ParkingLot;
     using Xunit;
 
-    public class ParkingBoyTest
+    public class SmartParkingBoyTest
     {
         [Fact]
         public void Should_Park_Return_ParkingTicket_When_Park_To_Available_ParkingLot()
