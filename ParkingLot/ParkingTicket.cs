@@ -7,8 +7,8 @@ namespace ParkingLot
     public class ParkingTicket
     {
         private string parkingTime = default(DateTime).ToShortTimeString();
-        private bool isUsed = false;
         private string carPlateNumber;
+        private bool isUsed = false;
 
         public ParkingTicket(string parkedCarPlateNumber)
         {
