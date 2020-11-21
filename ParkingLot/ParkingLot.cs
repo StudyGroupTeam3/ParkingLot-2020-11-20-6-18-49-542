@@ -45,7 +45,7 @@ namespace ParkingLot
 
         private ParkingTicket GenerateParkingTicket(Car car)
         {
-            return new ParkingTicket(car.GetPlateNumber());
+            return new ParkingTicket(car.GetPlateNumber(), this.name);
         }
     }
 }
