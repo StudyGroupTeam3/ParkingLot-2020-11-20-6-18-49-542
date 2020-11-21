@@ -21,6 +21,11 @@ namespace ParkingLot.Models
 
         public Car FetchCar(string ticket)
         {
+            if (ticket == null)
+            {
+                return new Car("Please provide your parking ticket");
+            }
+
             var car = parkingLot.GetCarGivenTicket(ticket);
 
             return car ?? new Car("Unrecognized parking ticket");

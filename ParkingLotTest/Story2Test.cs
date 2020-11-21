@@ -39,5 +39,22 @@ namespace ParkingLotTest
             // then
             Assert.Equal(expected, actual.ToString());
         }
+
+        [Fact]
+        public void Should_return_Please_provide_your_parking_ticket_when_give_null()
+        {
+            // given
+            var boy = new Boy();
+            var car = new Car("BMW");
+
+            // when
+            boy.ParkCar(car);
+
+            var expected = "Please provide your parking ticket";
+            var actual = boy.FetchCar(null);
+
+            // then
+            Assert.Equal(expected, actual.ToString());
+        }
     }
 }
