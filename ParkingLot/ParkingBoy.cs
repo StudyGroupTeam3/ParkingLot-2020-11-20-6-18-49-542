@@ -8,8 +8,13 @@ namespace ParkingLot
     {
         public string Park(Car car, Dictionary<string, Car> parkinglot)
         {
-            parkinglot.Add(car.PlateNumber, car);
-            return $"SuperPark: {car.PlateNumber}";
+            if (parkinglot.Count < 10)
+            {
+                parkinglot.Add(car.PlateNumber, car);
+                return $"SuperPark: {car.PlateNumber}";
+            }
+
+            return null;
         }
 
         public Car Fetch(string ticket, Dictionary<string, Car> parkinglot)

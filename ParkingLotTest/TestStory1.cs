@@ -124,4 +124,23 @@ namespace ParkingLotTest
             Assert.Equal(expected, result);
         }
     }
+
+    public class AC5
+    {
+        [Fact]
+        public void Should_ParkingBoyPark_Return_No_Ticket_Given_Full_Parkinglot()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithTenCars();
+            var car = new Car("BJ_454867");
+            string expected = null;
+
+            //When
+            var result = boy.Park(car, parkingLot);
+
+            //Then
+            Assert.Equal(expected, result);
+        }
+    }
 }
