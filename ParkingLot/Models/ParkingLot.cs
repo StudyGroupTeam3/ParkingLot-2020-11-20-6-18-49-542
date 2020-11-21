@@ -8,6 +8,7 @@ namespace ParkingLot.Models
     public class ParkingLot
     {
         private List<CarParked> cars = new List<CarParked>();
+        private int capacity = 10;
 
         public List<CarParked> LoadCars()
         {
@@ -19,10 +20,15 @@ namespace ParkingLot.Models
         public string AddCarGetTicket(Car car)
         {
             var newId = cars.Count + 1;
-            var newTicket = newId.ToString().PadLeft(3, '0');
-            cars.Add(new CarParked(newTicket, car));
+            if (newId < this.capacity)
+            {
+                var newTicket = newId.ToString().PadLeft(3, '0');
+                cars.Add(new CarParked(newTicket, car));
 
-            return newTicket;
+                return newTicket;
+            }
+
+            return string.Empty;
         }
 
         public Car GetCarGivenTicket(string ticket)

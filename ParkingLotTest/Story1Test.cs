@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Text;
 using ParkingLot.Models;
 using Xunit;
@@ -41,6 +42,28 @@ namespace ParkingLotTest
         }
 
         [Fact]
+        public void Story1_AC2_Should_park_multiple_cars()
+        {
+            // given
+            var boy = new Boy();
+            var car1 = new Car("BWM");
+            var car2 = new Car("Benz");
+            var car3 = new Car("Porsche");
+
+            // when
+            boy.ParkCar(car1);
+            boy.ParkCar(car2);
+            boy.ParkCar(car3);
+
+            var expected = 3;
+            var actual = boy.GetCarsCount();
+
+            // then
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
         public void Story1_AC2_Should_park_multiple_cars_fetch_right_car_by_ticket()
         {
             // given
@@ -60,13 +83,9 @@ namespace ParkingLotTest
             var expected2 = "Benz";
             var actual2 = boy.FetchCar(ticket3);
 
-            var expected3CountOfCars = 3;
-            var actual3CountOfCars = boy.GetCarsCount();
-
             // then
             Assert.Equal(expected1, actual1.Brand);
             Assert.NotEqual(expected2, actual2.Brand);
-            Assert.Equal(expected3CountOfCars, actual3CountOfCars);
         }
 
         [Fact]
@@ -99,6 +118,28 @@ namespace ParkingLotTest
 
             Car expected = null;
             var actual = boy.FetchCar(ticket);
+
+            // then
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Story1_AC5_Should_not_get_ticket_when_no_position()
+        {
+            // given
+            var boy = new Boy();
+            var car = new Car("BWM");
+
+            // when
+            var count = 0;
+            while (count < 10)
+            {
+                boy.ParkCar(car);
+                count++;
+            }
+
+            var expected = string.Empty;
+            var actual = boy.ParkCar(car);
 
             // then
             Assert.Equal(expected, actual);
