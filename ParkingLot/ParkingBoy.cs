@@ -33,6 +33,11 @@ namespace ParkingLot
                 return null;
             }
 
+            if (!this.parkingLot.HasCarId(parkingTicket.CarId))
+            {
+                return null;
+            }
+
             return this.parkingLot.GetCar(parkingTicket.CarId);
         }
     }

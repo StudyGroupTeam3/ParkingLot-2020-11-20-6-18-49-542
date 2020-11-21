@@ -118,5 +118,20 @@ namespace ParkingLotTest
             // then
             Assert.Null(actualCar);
         }
+
+        [Fact]
+        public void Should_return_null_when_use_a_used_parking_ticket_to_fetch_a_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            var parkingTicket = parkingBoy.ParkCar(car);
+            parkingBoy.FetchCar(parkingTicket);
+            // when
+            var actualCar = parkingBoy.FetchCar(parkingTicket);
+            // then
+            Assert.Null(actualCar);
+        }
     }
 }
