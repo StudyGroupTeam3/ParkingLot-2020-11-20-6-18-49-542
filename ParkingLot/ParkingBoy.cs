@@ -12,5 +12,10 @@ namespace ParkingLot
         {
             this.parkingLot = parkingLot;
         }
+
+        public void ParkingCar(ICar car)
+        {
+            this.parkingLot.AddCar(car);
+        }
     }
 }
