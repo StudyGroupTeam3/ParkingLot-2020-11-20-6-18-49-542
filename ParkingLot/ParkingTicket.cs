@@ -8,13 +8,13 @@ namespace ParkingLot
     {
         private string parkingTime = default(DateTime).ToShortTimeString();
         private string carPlateNumber;
-        private string parkingLot;
+        private ParkingLot parkingLot;
         private bool isUsed = false;
 
-        public ParkingTicket(string parkedCarPlateNumber, string parkingLotName)
+        public ParkingTicket(string parkedCarPlateNumber, ParkingLot parkingLotObject)
         {
             this.carPlateNumber = parkedCarPlateNumber;
-            this.parkingLot = parkingLotName;
+            this.parkingLot = parkingLotObject;
         }
 
         public string GetParkingTime()

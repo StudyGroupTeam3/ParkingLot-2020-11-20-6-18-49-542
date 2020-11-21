@@ -38,14 +38,14 @@ namespace ParkingLot
             return null;
         }
 
-        public void UpdateUsageCondition()
+        private void UpdateUsageCondition()
         {
             this.hasPosition = cars.Count < this.capacity;
         }
 
         private ParkingTicket GenerateParkingTicket(Car car)
         {
-            return new ParkingTicket(car.GetPlateNumber(), this.name);
+            return new ParkingTicket(car.GetPlateNumber(), this);
         }
     }
 }
