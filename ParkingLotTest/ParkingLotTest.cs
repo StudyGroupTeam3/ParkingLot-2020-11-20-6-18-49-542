@@ -67,5 +67,18 @@ namespace ParkingLotTest
             // then
             Assert.True(hasCar);
         }
+
+        [Fact]
+        public void Should_return_false_when_use_HasCar_to_check_if_a_new_car_is_already_parked_in_this_ParkingLot()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var car = new Car();
+            // when
+            parkingLot.AddCar(car);
+            var hasCar = parkingLot.HasCar(new Car());
+            // then
+            Assert.False(hasCar);
+        }
     }
 }
