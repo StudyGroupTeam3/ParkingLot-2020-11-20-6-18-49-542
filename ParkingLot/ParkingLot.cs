@@ -19,7 +19,7 @@ namespace ParkingLot
 
         public ParkingTicket Park(Car car)
         {
-            if (cars.TryAdd(car.GetPlateNumber(), car))
+            if (hasPosition && cars.TryAdd(car.GetPlateNumber(), car))
             {
                 return GenerateParkingTicket(car);
             }
@@ -35,11 +35,6 @@ namespace ParkingLot
         public void UpdateUsageCondition()
         {
             this.hasPosition = cars.Count <= this.capacity;
-        }
-
-        public bool HasPosition()
-        {
-            return this.hasPosition;
         }
 
         private ParkingTicket GenerateParkingTicket(Car car)

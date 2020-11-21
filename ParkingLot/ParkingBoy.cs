@@ -15,27 +15,14 @@ namespace ParkingLot
 
         public ParkingTicket Park(Car car, ParkingLot parkingLot)
         {
-            ParkingTicket parkingTicket = null;
-            if (ParkingLotHasPosition(parkingLot))
-            {
-                if (parkingLot.Park(car))
-                {
-                    parkingTicket = GenerateParkingTicket(car);
-                    UpdateProvidedParkingTicket(parkingTicket);
-                }
-            }
-
+            ParkingTicket parkingTicket = parkingLot.Park(car);
+            UpdateProvidedParkingTicket(parkingTicket);
             return parkingTicket;
         }
 
         public Car Fetch(ParkingTicket parkingTicket)
         {
             return null;
-        }
-
-        private bool ParkingLotHasPosition(ParkingLot parkingLot)
-        {
-            return parkingLot.HasPosition();
         }
 
         private void UpdateProvidedParkingTicket(ParkingTicket parkingTicket)
