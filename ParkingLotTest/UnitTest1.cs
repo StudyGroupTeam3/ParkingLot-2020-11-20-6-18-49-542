@@ -1,15 +1,23 @@
 namespace ParkingLotTest
 {
+    using Moq;
     using ParkingLot;
     using Xunit;
 
     public class UnitTest1
     {
         [Fact]
-        public void Test1()
+        public void ShouldReturnATiketGiveACustomer()
         {
-            var class1 = new Class1();
-            Assert.NotNull(null);
+            // given
+            string expected = "1-1";
+
+            // when
+            ParkingBoy parkingBoy = new ParkingBoy();
+            string actual = parkingBoy.GiveTickets();
+
+            // then
+            Assert.Equal("1-1", actual);
         }
     }
 }
