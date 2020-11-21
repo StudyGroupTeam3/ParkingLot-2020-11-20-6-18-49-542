@@ -15,6 +15,11 @@ namespace ParkingLot
 
         public ParkingTicket ParkCar(ICar car)
         {
+            if (!this.parkingLot.HasPosition())
+            {
+                return null;
+            }
+
             uint carId = this.parkingLot.CarId;
             uint parkingLotId = this.parkingLot.ParkingLotId;
             this.parkingLot.AddCar(car);

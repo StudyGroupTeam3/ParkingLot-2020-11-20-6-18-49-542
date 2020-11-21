@@ -133,5 +133,20 @@ namespace ParkingLotTest
             // then
             Assert.Null(actualCar);
         }
+
+        [Fact]
+        public void Should_return_no_ticket_when_try_to_park_a_car_when_there_is_no_position_in_parking_lot()
+        {
+            // given
+            var parkingLot = new ParkingLot(0, 1);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            var parkingTicket = parkingBoy.ParkCar(car);
+            // when
+            var anotherCar = new Car();
+            var newParkingTicket = parkingBoy.ParkCar(anotherCar);
+            // then
+            Assert.Null(newParkingTicket);
+        }
     }
 }
