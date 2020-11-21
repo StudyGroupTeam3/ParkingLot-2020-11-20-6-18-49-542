@@ -19,7 +19,7 @@ namespace ParkingLot
 
         public ParkingTicket Park(Car car)
         {
-            if (hasPosition && cars.TryAdd(car.GetPlateNumber(), car))
+            if (this.hasPosition && this.cars.TryAdd(car.GetPlateNumber(), car))
             {
                 UpdateUsageCondition();
                 return GenerateParkingTicket(car);

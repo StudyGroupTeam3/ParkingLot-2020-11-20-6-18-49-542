@@ -16,7 +16,11 @@ namespace ParkingLot
         public ParkingTicket Park(Car car, ParkingLot parkingLot)
         {
             ParkingTicket parkingTicket = parkingLot.Park(car);
-            UpdateProvidedParkingTicket(parkingTicket);
+            if (parkingTicket != null)
+            {
+                UpdateProvidedParkingTicket(parkingTicket);
+            }
+
             return parkingTicket;
         }
 

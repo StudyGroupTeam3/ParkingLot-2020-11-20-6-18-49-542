@@ -22,5 +22,20 @@ namespace ParkingLotTest
             // then
             Assert.IsType<ParkingTicket>(parkingTicket);
         }
+
+        //[Fact]
+        //public void Should_Fetch_Return_Car_With_Valid_ParkingTicket()
+        //{
+        //    // given
+        //    var car = new Car("JAA8888");
+        //    var parkingBoy = new ParkingBoy("Jack");
+        //    var parkingLot = new ParkingLot("ParkingLotOne");
+
+        //    // when
+        //    var parkingTicket = parkingBoy.Park(car, parkingLot);
+
+        //    // then
+        //    Assert.IsType<ParkingTicket>(parkingTicket);
+        //}
     }
 }
