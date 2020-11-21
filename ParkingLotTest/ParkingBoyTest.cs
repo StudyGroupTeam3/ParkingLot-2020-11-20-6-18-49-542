@@ -90,5 +90,33 @@ namespace ParkingLotTest
             // then
             Assert.True(isFetchedTheRightCar);
         }
+
+        [Fact]
+        public void Should_return_null_when_given_not_provided_ticket_to_fetch_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            var parkingTicket = parkingBoy.ParkCar(car);
+            // when
+            var actualCar = parkingBoy.FetchCar(new ParkingTicket(parkingTicket.ParkingLotId, parkingTicket.CarId + 1));
+            // then
+            Assert.Null(actualCar);
+        }
+
+        [Fact]
+        public void Should_return_null_when_not_given_a_parking_ticket_to_fetch_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            var parkingTicket = parkingBoy.ParkCar(car);
+            // when
+            var actualCar = parkingBoy.FetchCar(null);
+            // then
+            Assert.Null(actualCar);
+        }
     }
 }

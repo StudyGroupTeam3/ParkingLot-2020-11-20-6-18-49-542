@@ -23,6 +23,16 @@ namespace ParkingLot
 
         public ICar FetchCar(ParkingTicket parkingTicket)
         {
+            if (parkingTicket is null)
+            {
+                return null;
+            }
+
+            if (!this.parkingLot.IsCarIdProvided(parkingTicket.CarId))
+            {
+                return null;
+            }
+
             return this.parkingLot.GetCar(parkingTicket.CarId);
         }
     }
