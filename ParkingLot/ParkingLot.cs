@@ -8,6 +8,7 @@
     {
         private readonly uint id;
         private readonly SortedDictionary<uint, ICar> parkingLotPlaces = new SortedDictionary<uint, ICar>();
+        private uint carId = 0;
 
         public ParkingLot(uint id)
         {
@@ -15,6 +16,7 @@
         }
 
         protected SortedDictionary<uint, ICar> ParkingLotPlaces => this.parkingLotPlaces;
+        protected uint CarId => this.carId;
 
         public void AddCar(ICar car)
         {
@@ -34,6 +36,12 @@
         public bool HasCarId(uint carId)
         {
             return this.parkingLotPlaces.ContainsKey(carId);
+        }
+
+        private uint GenerateCarId()
+        {
+            this.carId += 1;
+            return this.carId;
         }
     }
 }
