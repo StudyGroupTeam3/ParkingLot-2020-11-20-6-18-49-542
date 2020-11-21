@@ -70,7 +70,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC3_Should_fetch_wrong_when_given_wrong_ticket()
+        public void Story1_AC3_Should_fetch_null_when_given_wrong_ticket()
         {
             // given
             var boy = new Boy();
@@ -81,6 +81,24 @@ namespace ParkingLotTest
 
             Car expected = null;
             var actual = boy.FetchCar("wrong ticket");
+
+            // then
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Story1_AC4_Should_fetch_null_when_given_used_ticket()
+        {
+            // given
+            var boy = new Boy();
+            var car = new Car("BWM");
+
+            // when
+            var ticket = boy.ParkCar(car);
+            boy.FetchCar(ticket);
+
+            Car expected = null;
+            var actual = boy.FetchCar(ticket);
 
             // then
             Assert.Equal(expected, actual);

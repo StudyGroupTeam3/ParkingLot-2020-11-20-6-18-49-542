@@ -28,6 +28,7 @@ namespace ParkingLot.Models
         public Car GetCarGivenTicket(string ticket)
         {
             var carFetched = cars.FirstOrDefault(car => car.Ticket == ticket)?.Car;
+            cars.Remove(cars.FirstOrDefault(car => car.Ticket == ticket));
 
             return carFetched;
         }
