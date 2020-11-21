@@ -13,11 +13,11 @@ namespace ParkingLotTest
         {
             // given
             var car = new Car("JAA8888");
-            var parkingBoy = new ParkingBoy("Jack");
             var parkingLot = new ParkingLot("ParkingLotOne");
+            var parkingBoy = new ParkingBoy("Jack", parkingLot);
 
             // when
-            var parkingTicket = parkingBoy.Park(car, parkingLot);
+            var parkingTicket = parkingBoy.Park(car);
 
             // then
             Assert.IsType<ParkingTicket>(parkingTicket);
@@ -29,9 +29,9 @@ namespace ParkingLotTest
             // given
             // given
             var parkedCar = new Car("JAA8888");
-            var parkingBoy = new ParkingBoy("Jack");
             var parkingLot = new ParkingLot("ParkingLotOne");
-            var parkingTicket = parkingBoy.Park(parkedCar, parkingLot);
+            var parkingBoy = new ParkingBoy("Jack", parkingLot);
+            var parkingTicket = parkingBoy.Park(parkedCar);
 
             // when
             var fetchedCar = parkingBoy.Fetch(parkingTicket);
