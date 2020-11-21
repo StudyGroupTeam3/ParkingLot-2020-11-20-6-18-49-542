@@ -33,14 +33,23 @@ namespace ParkingLot
 
         public Car Fetch(ParkingTicket parkingTicket)
         {
-            Car fetchedCar = null;
-            if (IsProvidedParkingTicket(parkingTicket) && !parkingTicket.GetIsUsed())
+            Printer printer = new Printer();
+            if (parkingTicket == null)
             {
-                fetchedCar = parkingTicket.GetParkingLot().Fetch(parkingTicket);
-                if (fetchedCar != null)
-                {
-                    parkingTicket.UseTicket();
-                }
+                printer.PrintMissingParkingTicketErrorMessage();
+                return null;
+            }
+
+            if (!IsProvidedParkingTicket(parkingTicket) || parkingTicket.GetIsUsed())
+            {
+                printer.PrintWrongParkingTicketErrorMessage();
+                return null;
+            }
+
+            Car fetchedCar = parkingTicket.GetParkingLot().Fetch(parkingTicket);
+            if (fetchedCar != null)
+            {
+                parkingTicket.UseTicket();
             }
 
             return fetchedCar;
