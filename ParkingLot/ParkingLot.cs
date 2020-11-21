@@ -30,6 +30,11 @@ namespace ParkingLot
 
         public Car Fetch(ParkingTicket parkingTicket)
         {
+            if (cars.ContainsKey(parkingTicket.GetCarPlateNumber()))
+            {
+                return cars[parkingTicket.GetCarPlateNumber()];
+            }
+
             return null;
         }
 
