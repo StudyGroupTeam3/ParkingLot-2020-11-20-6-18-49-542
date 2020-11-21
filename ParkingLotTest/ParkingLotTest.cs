@@ -158,5 +158,31 @@ namespace ParkingLotTest
             // then
             Assert.False(isCarIdGenerated);
         }
+
+        [Fact]
+        public void Should_return_false_when_has_no_position_in_parking_lot()
+        {
+            // given
+            var parkingLot = new ParkingLot(0, 1);
+            var car = new Car();
+            parkingLot.AddCar(car);
+            // when
+            bool hasPosition = parkingLot.HasPosition();
+            // then
+            Assert.False(hasPosition);
+        }
+
+        [Fact]
+        public void Should_return_true_when_has_position_in_parking_lot()
+        {
+            // given
+            var parkingLot = new ParkingLot(0, 2);
+            var car = new Car();
+            parkingLot.AddCar(car);
+            // when
+            bool hasPosition = parkingLot.HasPosition();
+            // then
+            Assert.True(hasPosition);
+        }
     }
 }
