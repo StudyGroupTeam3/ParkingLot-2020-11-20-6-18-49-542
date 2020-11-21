@@ -27,19 +27,22 @@ namespace ParkingLotTest
             Assert.Equal(expected, result);
         }
 
-        [Fact]
-        public void Should_ParkingBoyFetch_Return_Right_Car()
+        [Theory]
+        [InlineData("RJ_36528", "SuperPark: RJ_36528")]
+        [InlineData("BJ_88888", "SuperPark: BJ_88888")]
+        [InlineData("NY_34987713", "SuperPark: NY_34987713")]
+        public void Should_ParkingBoyFetch_Return_Right_Car(string plateNumber, string parkingTicket)
         {
             //Given
             var boy = new ParkingBoy();
-            var fetchedCar = new Car("RJ_36528");
-            var ticket = "SuperPark: RJ_36528";
+            var fetchedCar = new Car(plateNumber);
+            var ticket = parkingTicket;
             var parkingLot = new Dictionary<string, Car>();
             boy.Park(fetchedCar, parkingLot);
             Car expected = fetchedCar;
 
             //When
-            Car result = boy.Fetch(ticket, parkingLot);
+            var result = boy.Fetch(ticket, parkingLot);
 
             //Then
             Assert.IsType<Car>(result);

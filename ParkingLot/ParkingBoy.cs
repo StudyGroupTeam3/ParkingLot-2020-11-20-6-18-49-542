@@ -8,12 +8,14 @@ namespace ParkingLot
     {
         public string Park(Car car, Dictionary<string, Car> parkinglot)
         {
+            parkinglot.Add(car.PlateNumber, car);
             return $"SuperPark: {car.PlateNumber}";
         }
 
         public Car Fetch(string ticket, Dictionary<string, Car> parkinglot)
         {
-            var car = new Car("RJ_36528");
+            var plateNumber = ticket.Split(" ")[1];
+            var car = parkinglot[plateNumber];
             return car;
         }
     }
