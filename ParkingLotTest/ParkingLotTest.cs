@@ -20,6 +20,7 @@ namespace ParkingLotTest
 
             // then
             Assert.IsType<ParkingTicket>(parkingTicket);
+            Assert.NotNull(parkingTicket);
         }
 
         [Fact]
