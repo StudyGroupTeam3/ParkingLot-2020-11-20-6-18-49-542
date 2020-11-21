@@ -26,5 +26,24 @@ namespace ParkingLotTest
             Assert.IsType<string>(result);
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void Should_ParkingBoyFetch_Return_Right_Car()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            var fetchedCar = new Car("RJ_36528");
+            var ticket = "SuperPark: RJ_36528";
+            var parkingLot = new Dictionary<string, Car>();
+            boy.Park(fetchedCar, parkingLot);
+            Car expected = fetchedCar;
+
+            //When
+            Car result = boy.Fetch(ticket, parkingLot);
+
+            //Then
+            Assert.IsType<Car>(result);
+            Assert.Equal(expected.PlateNumber, result.PlateNumber);
+        }
     }
 }

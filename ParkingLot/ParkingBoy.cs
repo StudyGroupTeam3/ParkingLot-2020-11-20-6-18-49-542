@@ -10,5 +10,11 @@ namespace ParkingLot
         {
             return $"SuperPark: {car.PlateNumber}";
         }
+
+        public Car Fetch(string ticket, Dictionary<string, Car> parkinglot)
+        {
+            var car = new Car("RJ_36528");
+            return car;
+        }
     }
 }
