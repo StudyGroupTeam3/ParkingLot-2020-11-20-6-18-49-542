@@ -22,6 +22,11 @@ namespace ParkingLot
             return cars.TryAdd(carToPark.GetPlateNumber(), carToPark);
         }
 
+        public Car Fetch(ParkingTicket parkingTicket)
+        {
+            return null;
+        }
+
         public void UpdateUsageCondition()
         {
             this.hasPosition = cars.Count <= this.capacity;
