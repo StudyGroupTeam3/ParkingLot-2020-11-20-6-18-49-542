@@ -25,6 +25,27 @@ namespace ParkingLot
             return null;
         }
 
+        public string Park(Car car, Dictionary<string, Car> parkinglot, out string message)
+        {
+            if (parkinglot.Count < 10 && !parkinglot.ContainsKey(car.PlateNumber))
+            {
+                try
+                {
+                    parkinglot.Add(car.PlateNumber, car);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+
+                message = "Your car is parked successfully";
+                return $"SuperPark: {car.PlateNumber}";
+            }
+
+            message = "Not enough position.";
+            return null;
+        }
+
         public Car Fetch(string ticket, Dictionary<string, Car> parkinglot)
         {
             var plateNumber = ticket.Split(" ")[1];
@@ -45,7 +66,7 @@ namespace ParkingLot
             {
                 var car = parkinglot[plateNumber];
                 parkinglot.Remove(plateNumber);
-                message = "Your car is parked successfully";
+                message = "Here is your car";
                 return car;
             }
 

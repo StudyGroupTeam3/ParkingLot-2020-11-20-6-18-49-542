@@ -68,4 +68,23 @@ namespace ParkingLotTest
             Assert.Equal(expectedMessage, actualMessage);
         }
     }
+
+    public class Story2AC3
+    {
+        [Fact]
+        public void Should_ParkingBoy_Return_Correct_Error_Message_When_Parkinglot_Is_Full()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithTenCars();
+            string expectedMessage = "Not enough position.";
+            string actualMessage;
+
+            //When
+            var result = boy.Park(new Car("BJ_54654"), parkingLot, out actualMessage);
+
+            //Then
+            Assert.Equal(expectedMessage, actualMessage);
+        }
+    }
 }
