@@ -5,7 +5,7 @@ namespace ParkingLotTest
     using ParkingLot;
     using Xunit;
 
-    public class TestStory1
+    public class AC1
     {
         [Theory]
         [InlineData("RJ_36528", "SuperPark: RJ_36528")]
@@ -46,7 +46,37 @@ namespace ParkingLotTest
 
             //Then
             Assert.IsType<Car>(result);
-            Assert.Equal(expected.PlateNumber, result.PlateNumber);
+            Assert.Equal(expected, result);
+        }
+    }
+
+    public class AC2
+    {
+        [Fact]
+        public void Should_ParkingBoyFecth_Return_Right_Car()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            List<Car> cars = new List<Car>()
+            {
+                new Car("RJ_12784"),
+                new Car("RJ_34543"),
+                new Car("RJ_12446"),
+            };
+            var parkingLot = new Dictionary<string, Car>();
+            foreach (Car car in cars)
+            {
+                boy.Park(car, parkingLot);
+            }
+
+            var ticket = "SuperPark: RJ_12784";
+            Car expected = cars[0];
+
+            //When
+            var result = boy.Fetch(ticket, parkingLot);
+
+            //Then
+            Assert.Equal(expected, result);
         }
     }
 }
