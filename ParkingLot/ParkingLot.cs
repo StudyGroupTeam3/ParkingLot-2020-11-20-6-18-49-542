@@ -21,6 +21,7 @@ namespace ParkingLot
         {
             if (hasPosition && cars.TryAdd(car.GetPlateNumber(), car))
             {
+                UpdateUsageCondition();
                 return GenerateParkingTicket(car);
             }
 
@@ -34,7 +35,12 @@ namespace ParkingLot
 
         public void UpdateUsageCondition()
         {
-            this.hasPosition = cars.Count <= this.capacity;
+            this.hasPosition = cars.Count < this.capacity;
+        }
+
+        public bool GetBool()
+        {
+            return hasPosition;
         }
 
         private ParkingTicket GenerateParkingTicket(Car car)
