@@ -142,5 +142,21 @@ namespace ParkingLotTest
             //Then
             Assert.Equal(expected, result);
         }
+
+        [Fact]
+        public void Should_ParkingBoyPark_Return_No_Ticket_Given_Parked_Car()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
+            var car = new Car("RJ_12784");
+            string expected = null;
+
+            //When
+            var result = boy.Park(car, parkingLot);
+
+            //Then
+            Assert.Equal(expected, result);
+        }
     }
 }
