@@ -64,32 +64,31 @@ namespace ParkingLotTest
             Assert.Equal(expectedLoadsOfSecondParkinglot, actualLoadsOfSecondParkinglot);
         }
 
-        //[Theory]
-        //[InlineData("RJ_36528", "SuperPark: RJ_36528")]
-        //public void Should_ParkingBoy_Return_Null_When_Both_Parkinglots_Are_Full(string plateNumber, string parkingTicket)
-        //{
-        //    //Given
-        //    var boy = new ParkingBoy();
-        //    var car = new Car(plateNumber);
-        //    var parkingLots = new List<Dictionary<string, Car>>()
-        //    {
-        //        LotInitialize.FillLotWithTenCars(),
-        //        LotInitialize.FillLotWithTenCars(),
-        //    };
-        //    int loadsOfFirstParkinglot = parkingLots[0].Count;
-        //    string expectedTicket = parkingTicket;
-        //    int expectedLoadsOfFirstParkinglot = loadsOfFirstParkinglot + 1;
-        //    int expectedLoadsOfSecondParkinglot = 10;
+        [Theory]
+        [InlineData("RJ_36528", "SuperPark: RJ_36528")]
+        public void Should_ParkingBoy_Return_Null_When_Both_Parkinglots_Are_Full(string plateNumber, string parkingTicket)
+        {
+            //Given
+            var boy = new ParkingBoy();
+            var car = new Car(plateNumber);
+            var parkingLots = new List<Dictionary<string, Car>>()
+            {
+                LotInitialize.FillLotWithTenCars(),
+                LotInitialize.FillLotWithTenCars(),
+            };
+            string expectedTicket = null;
+            int expectedLoadsOfFirstParkinglot = 10;
+            int expectedLoadsOfSecondParkinglot = 10;
 
-        //    //When
-        //    string actualTicket = boy.Park(car, parkingLots);
-        //    var actualLoadsOfFirstParkinglot = parkingLots[0].Count;
-        //    var actualLoadsOfSecondParkinglot = parkingLots[1].Count;
+            //When
+            string actualTicket = boy.Park(car, parkingLots);
+            var actualLoadsOfFirstParkinglot = parkingLots[0].Count;
+            var actualLoadsOfSecondParkinglot = parkingLots[1].Count;
 
-        //    //Then
-        //    Assert.Equal(expectedTicket, actualTicket);
-        //    Assert.Equal(expectedLoadsOfFirstParkinglot, actualLoadsOfFirstParkinglot);
-        //    Assert.Equal(expectedLoadsOfSecondParkinglot, actualLoadsOfSecondParkinglot);
-        //}
+            //Then
+            Assert.Equal(expectedTicket, actualTicket);
+            Assert.Equal(expectedLoadsOfFirstParkinglot, actualLoadsOfFirstParkinglot);
+            Assert.Equal(expectedLoadsOfSecondParkinglot, actualLoadsOfSecondParkinglot);
+        }
     }
 }

@@ -10,14 +10,16 @@ namespace ParkingLot
         private int indexOfPlateNumber = 1;
         public string Park(Car car, List<Dictionary<string, Car>> parkinglots)
         {
-            int index = 0;
+            int lotIndex = 0;
 
-            while (parkinglots[index].Count == parkingCapacity)
+            while (parkinglots[lotIndex].Count == parkingCapacity)
             {
-                index += 1;
+                lotIndex += 1;
+                if (lotIndex == parkinglots.Count - 1)
+                {
+                    break;
+                }
             }
-
-            var lotIndex = index > parkinglots.Count - 1 ? parkinglots.Count - 1 : index;
 
             if (parkinglots[lotIndex].Count < parkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
             {
