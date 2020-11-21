@@ -59,5 +59,19 @@ namespace ParkingLotTest
             // then
             Assert.True(isParkingTicketCorrect);
         }
+
+        [Fact]
+        public void Should_return_the_car_when_use_correct_parking_ticket_to_fetch_the_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var expectedCar = new Car();
+            var parkingTicket = parkingBoy.ParCar(expectedCar);
+            // when
+            var actualCar = parkingBoy.FetchCar(parkingTicket);
+            // then
+            Assert.Equal(expectedCar, actualCar);
+        }
     }
 }

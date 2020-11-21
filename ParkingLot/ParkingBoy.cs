@@ -20,5 +20,10 @@ namespace ParkingLot
             this.parkingLot.AddCar(car);
             return new ParkingTicket(parkingLotId, carId);
         }
+
+        public ICar FetchCar(ParkingTicket parkingTicket)
+        {
+            return this.parkingLot.GetCar(parkingTicket.CarId);
+        }
     }
 }
