@@ -58,6 +58,20 @@ namespace ParkingLotTest
         }
 
         [Fact]
+        public void Should_delete_pair_of_carId_car_car_from_parkingLotPlaces_when_GetCar_by_carId()
+        {
+            // given
+            var fakeParkingLot = new FakeParkingLot(0);
+            var expectedCar = new Car();
+            // when
+            fakeParkingLot.AddCar(expectedCar);
+            var actualCar = fakeParkingLot.GetCar(0);
+            var isCarStillExists = fakeParkingLot.HasCarId(0);
+            // then
+            Assert.False(isCarStillExists);
+        }
+
+        [Fact]
         public void Should_return_true_when_use_HasCar_to_check_if_car_is_already_parked_in_this_ParkingLot()
         {
             // given

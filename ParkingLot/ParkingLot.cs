@@ -25,7 +25,9 @@
 
         public ICar GetCar(uint carId)
         {
-            return this.parkingLotPlaces[carId];
+            var car = this.parkingLotPlaces[carId];
+            this.parkingLotPlaces.Remove(carId);
+            return car;
         }
 
         public bool HasCar(ICar car)
