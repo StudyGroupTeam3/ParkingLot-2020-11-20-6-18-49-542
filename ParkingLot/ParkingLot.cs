@@ -38,11 +38,6 @@ namespace ParkingLot
             this.hasPosition = cars.Count < this.capacity;
         }
 
-        public bool GetBool()
-        {
-            return hasPosition;
-        }
-
         private ParkingTicket GenerateParkingTicket(Car car)
         {
             return new ParkingTicket(car.GetPlateNumber(), this.name);
