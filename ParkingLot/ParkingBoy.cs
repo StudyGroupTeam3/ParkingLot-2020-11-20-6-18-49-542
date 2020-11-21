@@ -6,9 +6,11 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
+        private int parkingCapacity = 10;
+        private int indexOfPlateNumber = 1;
         public string Park(Car car, Dictionary<string, Car> parkinglot)
         {
-            if (parkinglot.Count < 10 && !parkinglot.ContainsKey(car.PlateNumber))
+            if (parkinglot.Count < parkingCapacity && !parkinglot.ContainsKey(car.PlateNumber))
             {
                 try
                 {
@@ -27,7 +29,7 @@ namespace ParkingLot
 
         public string Park(Car car, Dictionary<string, Car> parkinglot, out string message)
         {
-            if (parkinglot.Count < 10 && !parkinglot.ContainsKey(car.PlateNumber))
+            if (parkinglot.Count < parkingCapacity && !parkinglot.ContainsKey(car.PlateNumber))
             {
                 try
                 {
@@ -48,7 +50,7 @@ namespace ParkingLot
 
         public Car Fetch(string ticket, Dictionary<string, Car> parkinglot)
         {
-            var plateNumber = ticket.Split(" ")[1];
+            var plateNumber = ticket.Split(" ")[indexOfPlateNumber];
             if (parkinglot.ContainsKey(plateNumber))
             {
                 var car = parkinglot[plateNumber];
@@ -61,7 +63,7 @@ namespace ParkingLot
 
         public Car Fetch(string ticket, Dictionary<string, Car> parkinglot, out string message)
         {
-            var plateNumber = ticket.Split(" ")[1];
+            var plateNumber = ticket.Split(" ")[indexOfPlateNumber];
             if (parkinglot.ContainsKey(plateNumber))
             {
                 var car = parkinglot[plateNumber];
