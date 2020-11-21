@@ -57,15 +57,9 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var cars = CarsFactory.LoadAllCars();
-            var parkingLot = new Dictionary<string, Car>();
-            foreach (Car car in cars)
-            {
-                boy.Park(car, parkingLot);
-            }
-
+            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
             var ticket = "SuperPark: RJ_12784";
-            Car expected = cars[0];
+            Car expected = parkingLot["RJ_12784"];
 
             //When
             var result = boy.Fetch(ticket, parkingLot);
@@ -82,13 +76,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var cars = CarsFactory.LoadAllCars();
-            var parkingLot = new Dictionary<string, Car>();
-            foreach (Car car in cars)
-            {
-                boy.Park(car, parkingLot);
-            }
-
+            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
             var ticket = "SuperPark: 456213154";
             Car expected = null;
 
@@ -104,12 +92,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var cars = CarsFactory.LoadAllCars();
-            var parkingLot = new Dictionary<string, Car>();
-            foreach (Car car in cars)
-            {
-                boy.Park(car, parkingLot);
-            }
+            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
 
             Car expected = null;
 
@@ -128,12 +111,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var cars = CarsFactory.LoadAllCars();
-            var parkingLot = new Dictionary<string, Car>();
-            foreach (Car car in cars)
-            {
-                boy.Park(car, parkingLot);
-            }
+            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
 
             var ticket = "SuperPark: RJ_12784";
             boy.Fetch(ticket, parkingLot);
