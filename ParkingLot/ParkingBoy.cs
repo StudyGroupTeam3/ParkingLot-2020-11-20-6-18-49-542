@@ -23,5 +23,10 @@ namespace ParkingLot
 
             return null;
         }
+
+        public Car Fetch(Dictionary<string, Car> parkinglot)
+        {
+            return null;
+        }
     }
 }

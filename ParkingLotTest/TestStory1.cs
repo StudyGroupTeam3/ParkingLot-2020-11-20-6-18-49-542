@@ -99,30 +99,25 @@ namespace ParkingLotTest
             Assert.Equal(expected, result);
         }
 
-        //[Fact]
-        //public void Should_ParkingBoyFecth_Return_No_Car_Given_No_Tickect()
-        //{
-        //    //Given
-        //    var boy = new ParkingBoy();
-        //    List<Car> cars = new List<Car>()
-        //    {
-        //        new Car("RJ_12784"),
-        //        new Car("RJ_34543"),
-        //        new Car("RJ_12446"),
-        //    };
-        //    var parkingLot = new Dictionary<string, Car>();
-        //    foreach (Car car in cars)
-        //    {
-        //        boy.Park(car, parkingLot);
-        //    }
+        [Fact]
+        public void Should_ParkingBoyFecth_Return_No_Car_Given_No_Tickect()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            var cars = CarsFactory.LoadAllCars();
+            var parkingLot = new Dictionary<string, Car>();
+            foreach (Car car in cars)
+            {
+                boy.Park(car, parkingLot);
+            }
 
-        //    Car expected = null;
+            Car expected = null;
 
-        //    //When
-        //    var result = boy.Fetch(parkingLot);
+            //When
+            var result = boy.Fetch(parkingLot);
 
-        //    //Then
-        //    Assert.Equal(expected, result);
-        //}
+            //Then
+            Assert.Equal(expected, result);
+        }
     }
 }
