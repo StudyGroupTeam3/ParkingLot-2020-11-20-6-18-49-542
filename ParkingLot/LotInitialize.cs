@@ -28,9 +28,9 @@ namespace ParkingLot
         {
             var cars = new List<Car>()
             {
-                new Car("RJ_12784"),
-                new Car("RJ_34543"),
-                new Car("RJ_12446"),
+                new Car("RJ_12335"),
+                new Car("RJ_65421"),
+                new Car("RJ_45675"),
                 new Car("RJ_15456"),
                 new Car("RJ_45731"),
                 new Car("RJ_45372"),

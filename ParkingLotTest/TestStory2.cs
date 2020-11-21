@@ -13,14 +13,17 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
+            var parkingLots = new List<Dictionary<string, Car>>()
+            {
+                LotInitialize.FillLotWithSomeCars()
+            };
             var ticket = "SuperPark: 456213154";
             Car expectedCar = null;
             string expectedMessage = "Unrecognized parking ticket.";
             string actualMessage;
 
             //When
-            var actualCar = boy.Fetch(ticket, parkingLot, out actualMessage);
+            var actualCar = boy.Fetch(ticket, parkingLots, out actualMessage);
 
             //Then
             Assert.Equal(expectedCar, actualCar);
@@ -32,15 +35,18 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
+            var parkingLots = new List<Dictionary<string, Car>>()
+            {
+                LotInitialize.FillLotWithSomeCars()
+            };
             var ticket = "SuperPark: RJ_12784";
-            boy.Fetch(ticket, parkingLot);
+            boy.Fetch(ticket, parkingLots);
             Car expectedCar = null;
             string expectedMessage = "Unrecognized parking ticket.";
             string actualMessage;
 
             //When
-            var actualCar = boy.Fetch(ticket, parkingLot, out actualMessage);
+            var actualCar = boy.Fetch(ticket, parkingLots, out actualMessage);
 
             //Then
             Assert.Equal(expectedCar, actualCar);
@@ -55,13 +61,16 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithSomeCars();
+            var parkingLots = new List<Dictionary<string, Car>>()
+            {
+                LotInitialize.FillLotWithSomeCars()
+            };
             Car expectedCar = null;
             string expectedMessage = "Please provide your parking ticket.";
             string actualMessage;
 
             //When
-            var actualCar = boy.Fetch(parkingLot, out actualMessage);
+            var actualCar = boy.Fetch(parkingLots, out actualMessage);
 
             //Then
             Assert.Equal(expectedCar, actualCar);
@@ -76,12 +85,15 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            Dictionary<string, Car> parkingLot = LotInitialize.FillLotWithTenCars();
+            var parkingLots = new List<Dictionary<string, Car>>()
+            {
+                LotInitialize.FillLotWithTenCars(),
+            };
             string expectedMessage = "Not enough position.";
             string actualMessage;
 
             //When
-            var result = boy.Park(new Car("BJ_54654"), parkingLot, out actualMessage);
+            var result = boy.Park(new Car("BJ_54654"), parkingLots, out actualMessage);
 
             //Then
             Assert.Equal(expectedMessage, actualMessage);
