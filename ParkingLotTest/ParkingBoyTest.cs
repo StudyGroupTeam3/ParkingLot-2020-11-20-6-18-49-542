@@ -148,5 +148,31 @@ namespace ParkingLotTest
             // then
             Assert.Null(newParkingTicket);
         }
+
+        [Fact]
+        public void Should_return_no_ticket_when_passing_a_null_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            // when
+            var parkingTicket = parkingBoy.ParkCar(null);
+            // then
+            Assert.Null(parkingTicket);
+        }
+
+        [Fact]
+        public void Should_return_no_ticket_when_passing_a_parked_car()
+        {
+            // given
+            var parkingLot = new ParkingLot(0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            var parkingTicket = parkingBoy.ParkCar(car);
+            // when
+            var newParkingTicket = parkingBoy.ParkCar(car);
+            // then
+            Assert.Null(newParkingTicket);
+        }
     }
 }

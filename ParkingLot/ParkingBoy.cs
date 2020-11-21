@@ -15,6 +15,16 @@ namespace ParkingLot
 
         public ParkingTicket ParkCar(ICar car)
         {
+            if (car is null)
+            {
+                return null;
+            }
+
+            if (this.parkingLot.HasCar(car))
+            {
+                return null;
+            }
+
             if (!this.parkingLot.HasPosition())
             {
                 return null;
