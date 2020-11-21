@@ -8,11 +8,13 @@
     {
         private readonly uint id;
         private readonly SortedDictionary<uint, ICar> parkingLotPlaces = new SortedDictionary<uint, ICar>();
+        private readonly int capacity;
         private uint carId = 0;
 
-        public ParkingLot(uint id)
+        public ParkingLot(uint id, int capacity = 10)
         {
             this.id = id;
+            this.capacity = capacity;
         }
 
         public uint ParkingLotId => this.id;
@@ -44,6 +46,11 @@
         public bool IsCarIdProvided(uint carId)
         {
             return carId < this.carId;
+        }
+
+        public bool HasPosition()
+        {
+            return this.parkingLotPlaces.Count < this.capacity;
         }
 
         private uint GenerateCarId()
