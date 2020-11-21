@@ -14,6 +14,11 @@
             this.id = id;
         }
 
-        protected SortedDictionary<uint, ICar> ParkingLotPlaces { get; }
+        protected SortedDictionary<uint, ICar> ParkingLotPlaces => this.parkingLotPlaces;
+
+        public void AddCar(ICar car)
+        {
+            this.parkingLotPlaces[(uint)parkingLotPlaces.Count] = car;
+        }
     }
 }
