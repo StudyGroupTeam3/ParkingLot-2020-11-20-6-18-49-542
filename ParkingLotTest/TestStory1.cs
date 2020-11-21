@@ -120,4 +120,30 @@ namespace ParkingLotTest
             Assert.Equal(expected, result);
         }
     }
+
+    public class AC4
+    {
+        [Fact]
+        public void Should_ParkingBoyFecth_Return_No_Car_Given_Used_Tickect()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            var cars = CarsFactory.LoadAllCars();
+            var parkingLot = new Dictionary<string, Car>();
+            foreach (Car car in cars)
+            {
+                boy.Park(car, parkingLot);
+            }
+
+            var ticket = "SuperPark: RJ_12784";
+            boy.Fetch(ticket, parkingLot);
+            Car expected = null;
+
+            //When
+            var result = boy.Fetch(ticket, parkingLot);
+
+            //Then
+            Assert.Equal(expected, result);
+        }
+    }
 }

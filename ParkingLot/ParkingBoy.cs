@@ -18,6 +18,7 @@ namespace ParkingLot
             if (parkinglot.ContainsKey(plateNumber))
             {
                 var car = parkinglot[plateNumber];
+                parkinglot.Remove(plateNumber);
                 return car;
             }
 
