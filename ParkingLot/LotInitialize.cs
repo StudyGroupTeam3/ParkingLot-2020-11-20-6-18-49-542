@@ -8,36 +8,23 @@ namespace ParkingLot
     {
         public static Dictionary<string, Car> FillLotWithCars(int carNumber)
         {
-            var parkinglotInitilizer = new LotInitialize();
-            var cars = parkinglotInitilizer.GenerateCars(carNumber);
             var parkingLot = new Dictionary<string, Car>();
-
-            foreach (var car in cars)
+            int loopIndex = 0;
+            while (loopIndex < carNumber)
             {
-                parkingLot.Add(car.PlateNumber, car);
+                var parkedCar = new Car(GeneratePlateNumber());
+                parkingLot.Add(parkedCar.PlateNumber, parkedCar);
+                loopIndex += 1;
             }
 
             return parkingLot;
         }
 
-        private string GeneratePlateNumber()
+        private static string GeneratePlateNumber()
         {
             Random rnd = new Random();
             var platenumber = rnd.Next(1000, 9999);
             return $"CityCode_{platenumber}";
-        }
-
-        private List<Car> GenerateCars(int carNumber)
-        {
-            var cars = new List<Car>();
-            int loopIndex = 0;
-            while (loopIndex < carNumber)
-            {
-                cars.Add(new Car(GeneratePlateNumber()));
-                loopIndex += 1;
-            }
-
-            return cars;
         }
     }
 }
