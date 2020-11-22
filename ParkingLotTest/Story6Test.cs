@@ -21,6 +21,9 @@ namespace ParkingLotTest
             boy = new Boy(1, parkingLots);
             smartBoy = new SmartBoy(2, parkingLots);
             superBoy = new SuperBoy(3, parkingLots);
+            manager.AddBoy(boy);
+            manager.AddBoy(smartBoy);
+            manager.AddBoy(superBoy);
         }
 
         public void Dispose()
@@ -33,9 +36,6 @@ namespace ParkingLotTest
             // given
 
             // when
-            manager.AddBoy(boy);
-            manager.AddBoy(smartBoy);
-            manager.AddBoy(superBoy);
             var expected = new List<Boy>() { boy, smartBoy, superBoy, };
             var actual = manager.ManagementList;
 
@@ -50,9 +50,6 @@ namespace ParkingLotTest
             var car = new Car("BMW");
 
             // when
-            manager.AddBoy(boy);
-            manager.AddBoy(smartBoy);
-            manager.AddBoy(superBoy);
             var ticket = manager.CallBoy(2).ParkCar(car);
             var expected = "0201001";
             var actual = ticket;
@@ -68,8 +65,6 @@ namespace ParkingLotTest
             var car = new Car("BMW");
 
             // when
-            manager.AddBoy(boy);
-            manager.AddBoy(smartBoy);
             manager.CallBoy(1).ParkCar(car);
             var ticket2 = manager.CallBoy(2).ParkCar(car);
             var expected = "Unrecognized parking ticket";
