@@ -50,5 +50,34 @@ namespace ParkingLotTest
             Assert.IsType<string>(result);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData("RJ_36528", "SuperPark: RJ_36528")]
+        [InlineData("BJ_88888", "SuperPark: BJ_88888")]
+        [InlineData("NY_34987713", "SuperPark: NY_34987713")]
+        public void Should_Manager_Can_Tell_Boy_To_Fetch(string plateNumber, string parkingTicket)
+        {
+            //Given
+            var manager = new ParkingManager("Chris");
+            var employee = new ParkingBoy("Jack");
+            manager.HireBoy(employee);
+            string parkMessage = string.Empty;
+            string fectchMessage = string.Empty;
+            var fetchedCar = new Car(plateNumber);
+            var ticket = parkingTicket;
+            var parkingLots = new List<CarLot<string, Car>>()
+            {
+                new CarLot<string, Car>(),
+            };
+            manager.ManagerPark(fetchedCar, parkingLots, out parkMessage);
+            Car expected = fetchedCar;
+
+            //When
+            var result = manager.ManagerFetch(ticket, parkingLots, out fectchMessage);
+
+            //Then
+            Assert.IsType<Car>(result);
+            Assert.Equal(expected, result);
+        }
     }
 }
