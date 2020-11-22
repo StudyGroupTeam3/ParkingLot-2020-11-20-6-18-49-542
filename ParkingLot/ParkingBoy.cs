@@ -2,55 +2,73 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private int capacity = 10;
-        private Dictionary<string, string> carAndTicketInformation = new Dictionary<string, string>();
-
-        public string ParkingCar(string car)
+        private Dictionary<Car, ParkingLot> parkedCars = new Dictionary<Car, ParkingLot>();
+        private List<ParkingLot> parkingLots;
+        private int leftPosition;
+        public ParkingBoy(List<ParkingLot> parkingLots)
         {
-            if (carAndTicketInformation.Count < capacity)
-            {
-                ParkingLots parkingLot = new ParkingLots("1");
-                List<string> tickets = parkingLot.GetTickets();
-                string ticket = tickets[carAndTicketInformation.Count];
-                carAndTicketInformation.Add(ticket, car);
-                return ticket;
-            }
-
-            if (carAndTicketInformation.Count >= capacity && carAndTicketInformation.Count < 2 * capacity)
-            {
-                ParkingLots parkingLot = new ParkingLots("2");
-                List<string> tickets = parkingLot.GetTickets();
-                string ticket = tickets[carAndTicketInformation.Count - capacity];
-                carAndTicketInformation.Add(ticket, car);
-                return ticket;
-            }
-
-            return "Not enough position.";
+            this.parkingLots = parkingLots;
+            leftPosition = parkingLots.Count * parkingLots[0].Capacity;
         }
 
-        public string FetchCar(string ticket)
+        public ParkingTicket ParkingCar(Car car, out string errorMessage)
         {
-            if (string.IsNullOrEmpty(ticket))
+            if (car == null)
             {
-                return "Please provide your parking ticket.";
+                errorMessage = "Input car is null.";
             }
 
-            if (!carAndTicketInformation.ContainsKey(ticket))
+            if (leftPosition <= 0)
             {
-                return "Unrecognized parking ticket.";
+                errorMessage = "Not enough position.";
+                return null;
             }
 
-            string fecthedCar = carAndTicketInformation[ticket];
-            carAndTicketInformation.Remove(ticket);
-            //tickets.Add(ticket);
-            return fecthedCar;
+            ParkingLot parkingLot = new ParkingLot("A");
+            errorMessage = string.Empty;
+            ParkingTicket parkingTicket = new ParkingTicket(car.CarId, parkingLot);
+            parkedCars.Add(car, parkingLot);
+            leftPosition--;
+            return parkingTicket;
+        }
+
+        public Car FetchCar(ParkingTicket parkingTicket, out string errorMessage)
+        {
+            Car car = null;
+            if (parkingTicket == null)
+            {
+                errorMessage = "Please provide your parking ticket.";
+                return null;
+            }
+
+            if (parkingTicket.IsUsed)
+            {
+                errorMessage = "Unrecognized parking ticket.";
+                return null;
+            }
+
+            foreach (var parkedCar in parkedCars)
+            {
+                if (parkedCar.Key.CarId == parkingTicket.CarId)
+                {
+                    parkingTicket.IsUsed = true;
+                    car = parkedCar.Key;
+                }
+            }
+
+            errorMessage = string.Empty;
+            Car outCar = car;
+            parkedCars.Remove(car);
+            return outCar;
         }
     }
 }
