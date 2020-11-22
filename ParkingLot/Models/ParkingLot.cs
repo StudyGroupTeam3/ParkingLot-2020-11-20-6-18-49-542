@@ -17,7 +17,6 @@ namespace ParkingLot.Models
         }
 
         public string LotNumber { get; set; }
-        public string BoyNumberBelonged { get; set; }
         public int Capacity => capacity;
         public int CarsCount => cars.Count;
         public double AvailablePosition => capacity - cars.Count;
@@ -26,7 +25,7 @@ namespace ParkingLot.Models
 
         public string AddCarGetTicket(Car car)
         {
-            var ticket = $"{BoyNumberBelonged}{LotNumber}{ParkingNumber}";
+            var ticket = $"{LotNumber}{ParkingNumber}";
             cars.Add(new CarParked(ticket, car));
             parkingNumber++;
 

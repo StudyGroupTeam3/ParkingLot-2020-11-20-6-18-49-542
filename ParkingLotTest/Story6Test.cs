@@ -17,12 +17,17 @@ namespace ParkingLotTest
 
         public Story6Test()
         {
-            boy.AddParkingLot(new Parkinglot(10));
-            smartBoy.AddParkingLot(new Parkinglot(10));
-            superBoy.AddParkingLot(new Parkinglot(10));
+            manager.AddParkingLot(new Parkinglot(10));
+            manager.AddParkingLot(new Parkinglot(10));
+            manager.AddParkingLot(new Parkinglot(10));
+
             manager.AddBoy(boy);
             manager.AddBoy(smartBoy);
             manager.AddBoy(superBoy);
+
+            manager.DistributeParkingLots(boy, manager.ParkingLots[1]);
+            manager.DistributeParkingLots(smartBoy, manager.ParkingLots[2]);
+            manager.DistributeParkingLots(superBoy, manager.ParkingLots[0]);
         }
 
         public void Dispose()
@@ -50,7 +55,7 @@ namespace ParkingLotTest
 
             // when
             var ticket = manager.CallBoy(2).ParkCar(car);
-            var expected = "0201001";
+            var expected = "03001";
             var actual = ticket;
 
             // then
@@ -78,6 +83,7 @@ namespace ParkingLotTest
         {
             // given
             var car = new Car("BMW");
+            var car2 = new Car("Benz");
             var count = 0;
             // when
             while (count < 20)
@@ -87,11 +93,16 @@ namespace ParkingLotTest
             }
 
             var ticket = manager.ParkCar(car);
-            var expected = "0301001";
-            var actual = ticket;
+            var ticket2 = manager.ParkCar(car2);
+
+            var expectedTicket = "03001";
+            var actualTicket = ticket;
+            var expectedCar = "Benz";
+            var actualCar = manager.FetchCar(ticket2);
 
             // then
-            Assert.Equal(expected, actual);
+            Assert.Equal(expectedTicket, actualTicket);
+            Assert.Equal(expectedCar, actualCar.ToString());
         }
     }
 }

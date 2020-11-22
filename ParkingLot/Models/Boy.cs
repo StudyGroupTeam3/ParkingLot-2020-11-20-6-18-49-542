@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ParkingLot.Models
 {
-    public class Boy
+    public class Boy : IParkCar, IFetchCar
     {
         private readonly List<Parkinglot> parkingLots = new List<Parkinglot>();
         private readonly int boyNumber;
@@ -16,7 +16,7 @@ namespace ParkingLot.Models
         }
 
         public List<Parkinglot> ParkingLots => parkingLots;
-        public string BoyNumber => boyNumber.ToString().PadLeft(2, '0');
+        public int BoyNumber => boyNumber - 1;
 
         public virtual string ParkCar(Car car)
         {
@@ -43,13 +43,14 @@ namespace ParkingLot.Models
                 return new Car("Please provide your parking ticket");
             }
 
-            if (int.Parse(ticket[..2]) != boyNumber)
+            var lotFind = parkingLots.FirstOrDefault(lot => lot.LotNumber == ticket[..2]);
+
+            if (lotFind == null)
             {
                 return new Car("Unrecognized parking ticket");
             }
 
-            var lotIndex = int.Parse(ticket[2..4]) - 1;
-            var car = parkingLots[lotIndex].GetCarGivenTicket(ticket);
+            var car = lotFind.GetCarGivenTicket(ticket);
 
             return car ?? new Car("Unrecognized parking ticket");
         }
@@ -57,13 +58,6 @@ namespace ParkingLot.Models
         public int GetCarsCount()
         {
             return parkingLots.Select(lot => lot.CarsCount).Sum();
-        }
-
-        public void AddParkingLot(Parkinglot parkingLot)
-        {
-            parkingLot.LotNumber = (parkingLots.Count + 1).ToString().PadLeft(2, '0');
-            parkingLot.BoyNumberBelonged = BoyNumber;
-            parkingLots.Add(parkingLot);
         }
     }
 }
