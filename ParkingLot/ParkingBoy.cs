@@ -17,7 +17,7 @@ namespace ParkingLot
             get { return 1; }
         }
 
-        public virtual string Park(Car car, List<Dictionary<string, Car>> parkinglots)
+        public virtual string Park(Car car, List<CarLot<string, Car>> parkinglots)
         {
             var lotIndex = FindLotIndex(parkinglots);
 
@@ -38,7 +38,7 @@ namespace ParkingLot
             return null;
         }
 
-        public virtual string Park(Car car, List<Dictionary<string, Car>> parkinglots, out string message)
+        public virtual string Park(Car car, List<CarLot<string, Car>> parkinglots, out string message)
         {
             var lotIndex = FindLotIndex(parkinglots);
 
@@ -61,7 +61,7 @@ namespace ParkingLot
             return null;
         }
 
-        public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglots)
+        public Car Fetch(string ticket, List<CarLot<string, Car>> parkinglots)
         {
             var plateNumber = ticket.Split(" ")[IndexOfPlateNumber];
             var targetParkinglot = parkinglots.Where(lot => lot.ContainsKey(plateNumber)).ToList();
@@ -75,7 +75,7 @@ namespace ParkingLot
             return car;
         }
 
-        public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglots, out string message)
+        public Car Fetch(string ticket, List<CarLot<string, Car>> parkinglots, out string message)
         {
             var plateNumber = ticket.Split(" ")[IndexOfPlateNumber];
             var targetParkinglot = parkinglots.Where(lot => lot.ContainsKey(plateNumber)).ToList();
@@ -91,18 +91,18 @@ namespace ParkingLot
             return car;
         }
 
-        public Car Fetch(List<Dictionary<string, Car>> parkinglot)
+        public Car Fetch(List<CarLot<string, Car>> parkinglot)
         {
             return null;
         }
 
-        public Car Fetch(List<Dictionary<string, Car>> parkinglot, out string message)
+        public Car Fetch(List<CarLot<string, Car>> parkinglot, out string message)
         {
             message = "Please provide your parking ticket.";
             return null;
         }
 
-        private int FindLotIndex(List<Dictionary<string, Car>> parkinglots)
+        private int FindLotIndex(List<CarLot<string, Car>> parkinglots)
         {
             int lotIndex = 0;
 

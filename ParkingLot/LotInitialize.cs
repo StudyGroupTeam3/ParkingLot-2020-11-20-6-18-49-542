@@ -6,9 +6,9 @@ namespace ParkingLot
 {
     public class LotInitialize
     {
-        public static Dictionary<string, Car> FillLotWithCars(int carNumber)
+        public static CarLot<string, Car> FillLotWithCars(int carNumber)
         {
-            var parkingLot = new Dictionary<string, Car>();
+            var parkingLot = new CarLot<string, Car>();
             int loopIndex = 0;
             while (loopIndex < carNumber)
             {

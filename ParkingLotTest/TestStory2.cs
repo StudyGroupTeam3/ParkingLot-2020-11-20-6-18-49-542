@@ -13,7 +13,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var parkingLots = new List<Dictionary<string, Car>>()
+            var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
                 LotInitialize.FillLotWithCars(4),
@@ -36,7 +36,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var parkingLots = new List<Dictionary<string, Car>>()
+            var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
                 LotInitialize.FillLotWithCars(4),
@@ -63,7 +63,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var parkingLots = new List<Dictionary<string, Car>>()
+            var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
                 LotInitialize.FillLotWithCars(4),
@@ -88,7 +88,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
-            var parkingLots = new List<Dictionary<string, Car>>()
+            var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(10),
                 LotInitialize.FillLotWithCars(10),
