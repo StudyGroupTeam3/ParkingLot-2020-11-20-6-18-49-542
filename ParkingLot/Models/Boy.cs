@@ -16,7 +16,7 @@ namespace ParkingLot.Models
 
         public List<ParkingLot> ParkingLots => parkingLots;
 
-        public string ParkCar(Car car)
+        public virtual string ParkCar(Car car)
         {
             if (car == null)
             {
