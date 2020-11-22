@@ -32,7 +32,9 @@ namespace ParkingLotTest
             //Given
             var manager = new ParkingManager("Chris");
             var employee = new ParkingBoy("Jack");
+            var employee2 = new SmartParkingBoy("Joy");
             manager.HireBoy(employee);
+            manager.HireBoy(employee2);
             string parkMessage = string.Empty;
             var car = new Car(plateNumber);
             var parkingLots = new List<CarLot<string, Car>>()
@@ -60,7 +62,9 @@ namespace ParkingLotTest
             //Given
             var manager = new ParkingManager("Chris");
             var employee = new ParkingBoy("Jack");
+            var employee2 = new SmartParkingBoy("Joy");
             manager.HireBoy(employee);
+            manager.HireBoy(employee2);
             string parkMessage = string.Empty;
             string fectchMessage = string.Empty;
             var fetchedCar = new Car(plateNumber);
