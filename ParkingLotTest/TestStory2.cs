@@ -16,6 +16,7 @@ namespace ParkingLotTest
             var parkingLots = new List<Dictionary<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
+                LotInitialize.FillLotWithCars(4),
             };
             var ticket = "SuperPark: 456213154";
             Car expectedCar = null;
@@ -38,6 +39,7 @@ namespace ParkingLotTest
             var parkingLots = new List<Dictionary<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
+                LotInitialize.FillLotWithCars(4),
             };
             var ticket = "SuperPark: RJ_12784";
             boy.Fetch(ticket, parkingLots);
@@ -64,6 +66,7 @@ namespace ParkingLotTest
             var parkingLots = new List<Dictionary<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
+                LotInitialize.FillLotWithCars(4),
             };
             Car expectedCar = null;
             string expectedMessage = "Please provide your parking ticket.";
@@ -87,6 +90,7 @@ namespace ParkingLotTest
             var boy = new ParkingBoy();
             var parkingLots = new List<Dictionary<string, Car>>()
             {
+                LotInitialize.FillLotWithCars(10),
                 LotInitialize.FillLotWithCars(10),
             };
             string expectedMessage = "Not enough position.";
