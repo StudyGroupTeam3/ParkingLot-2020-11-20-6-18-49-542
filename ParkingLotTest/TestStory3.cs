@@ -92,25 +92,26 @@ namespace ParkingLotTest
         }
     }
 
-    public class Story3AC2
-    {
-        [Fact]
-        public void Should_ParkingBoyFecth_Return_Right_Car_From_Multiple_Parkinglots()
-        {
-            //Given
-            var boy = new ParkingBoy();
-            var parkingLots = new List<Dictionary<string, Car>>()
-            {
-                LotInitialize.FillLotWithCars(3),
-            };
-            var ticket = "SuperPark: RJ_12784";
-            Car expected = parkingLots[0]["RJ_12784"];
+    //public class Story3AC2
+    //{
+    //    [Fact]
+    //    public void Should_ParkingBoyFecth_Return_Right_Car_From_Multiple_Parkinglots()
+    //    {
+    //        //Given
+    //        var boy = new ParkingBoy();
+    //        var parkingLots = new List<Dictionary<string, Car>>()
+    //        {
+    //            LotInitialize.FillLotWithCars(3),
+    //            LotInitialize.FillLotWithCars(4),
+    //        };
+    //        var ticket = "SuperPark: RJ_12784";
+    //        Car expected = parkingLots[0]["RJ_12784"];
 
-            //When
-            var result = boy.Fetch(ticket, parkingLots);
+    //        //When
+    //        var result = boy.Fetch(ticket, parkingLots);
 
-            //Then
-            Assert.Equal(expected, result);
-        }
-    }
+    //        //Then
+    //        Assert.Equal(expected, result);
+    //    }
+    //}
 }

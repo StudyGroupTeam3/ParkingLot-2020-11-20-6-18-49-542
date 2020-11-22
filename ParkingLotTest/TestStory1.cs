@@ -68,6 +68,7 @@ namespace ParkingLotTest
                 LotInitialize.FillLotWithCars(3)
             };
             var ticket = "SuperPark: RJ_12784";
+            boy.Park(new Car("RJ_12784"), parkingLots);
             Car expected = parkingLots[0]["RJ_12784"];
 
             //When
@@ -174,6 +175,7 @@ namespace ParkingLotTest
                 LotInitialize.FillLotWithCars(3),
             };
             var car = new Car("RJ_12784");
+            boy.Park(car, parkingLots);
             string expected = null;
 
             //When
