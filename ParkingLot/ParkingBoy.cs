@@ -15,14 +15,7 @@ namespace ParkingLot
 
             if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && IsCarNotParked(car, parkinglots))
             {
-                try
-                {
-                    parkinglots[lotIndex].Add(car.PlateNumber, car);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                ParkIntoPosition(car, parkinglots, lotIndex);
 
                 return $"SuperPark: {car.PlateNumber}";
             }
@@ -36,14 +29,7 @@ namespace ParkingLot
 
             if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && IsCarNotParked(car, parkinglots))
             {
-                try
-                {
-                    parkinglots[lotIndex].Add(car.PlateNumber, car);
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                ParkIntoPosition(car, parkinglots, lotIndex);
 
                 message = "Your car is parked successfully";
                 return $"SuperPark: {car.PlateNumber}";
@@ -105,6 +91,18 @@ namespace ParkingLot
             }
 
             return true;
+        }
+
+        protected void ParkIntoPosition(Car car, List<CarLot<string, Car>> parkinglots, int lotIndex)
+        {
+            try
+            {
+                parkinglots[lotIndex].Add(car.PlateNumber, car);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private int FindLotIndex(List<CarLot<string, Car>> parkinglots)
