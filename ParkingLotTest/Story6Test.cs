@@ -104,5 +104,24 @@ namespace ParkingLotTest
             Assert.Equal(expectedTicket, actualTicket);
             Assert.Equal(expectedCar, actualCar.ToString());
         }
+
+        [Fact]
+        public void AC3_Should_return_wrong_message_when_boy_failed()
+        {
+            // given
+            var car = new Car("BMW");
+
+            // when
+            var expectedTicket = "wrong car";
+            var actualTicket = manager.CallBoy(1).ParkCar(null);
+            manager.CallBoy(1).ParkCar(car);
+            var ticket = manager.CallBoy(1).ParkCar(car);
+            var expectedCar = "Please provide your parking ticket";
+            var actualCar = manager.CallBoy(1).FetchCar(null);
+
+            // then
+            Assert.Equal(expectedTicket, actualTicket);
+            Assert.Equal(expectedCar, actualCar.ToString());
+        }
     }
 }
