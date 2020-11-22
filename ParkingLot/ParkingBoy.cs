@@ -7,13 +7,21 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private int parkingCapacity = 10;
-        private int indexOfPlateNumber = 1;
-        public string Park(Car car, List<Dictionary<string, Car>> parkinglots)
+        protected int ParkingCapacity
+        {
+            get { return 10; }
+        }
+
+        protected int IndexOfPlateNumber
+        {
+            get { return 1; }
+        }
+
+        public virtual string Park(Car car, List<Dictionary<string, Car>> parkinglots)
         {
             var lotIndex = FindLotIndex(parkinglots);
 
-            if (parkinglots[lotIndex].Count < parkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
+            if (parkinglots[lotIndex].Count < ParkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
             {
                 try
                 {
@@ -30,11 +38,11 @@ namespace ParkingLot
             return null;
         }
 
-        public string Park(Car car, List<Dictionary<string, Car>> parkinglots, out string message)
+        public virtual string Park(Car car, List<Dictionary<string, Car>> parkinglots, out string message)
         {
             var lotIndex = FindLotIndex(parkinglots);
 
-            if (parkinglots[lotIndex].Count < parkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
+            if (parkinglots[lotIndex].Count < ParkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
             {
                 try
                 {
@@ -55,7 +63,7 @@ namespace ParkingLot
 
         public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglots)
         {
-            var plateNumber = ticket.Split(" ")[indexOfPlateNumber];
+            var plateNumber = ticket.Split(" ")[IndexOfPlateNumber];
             var targetParkinglot = parkinglots.Where(lot => lot.ContainsKey(plateNumber)).ToList();
             if (targetParkinglot.Count == 0)
             {
@@ -69,7 +77,7 @@ namespace ParkingLot
 
         public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglots, out string message)
         {
-            var plateNumber = ticket.Split(" ")[indexOfPlateNumber];
+            var plateNumber = ticket.Split(" ")[IndexOfPlateNumber];
             var targetParkinglot = parkinglots.Where(lot => lot.ContainsKey(plateNumber)).ToList();
             if (targetParkinglot.Count == 0)
             {
@@ -98,7 +106,7 @@ namespace ParkingLot
         {
             int lotIndex = 0;
 
-            while (parkinglots[lotIndex].Count == parkingCapacity)
+            while (parkinglots[lotIndex].Count == ParkingCapacity)
             {
                 if (lotIndex == parkinglots.Count - 1)
                 {
