@@ -8,13 +8,29 @@ using Xunit;
 
 namespace ParkingLotTest
 {
-    public class Story1Test
+    public class Story1Test : IDisposable
     {
+        private readonly List<Parkinglot> parkingLots;
+        private readonly Boy boy;
+
+        public Story1Test()
+        {
+            parkingLots = new List<Parkinglot>
+            {
+                new Parkinglot(1, 10),
+            };
+
+            boy = new Boy(parkingLots);
+        }
+
+        public void Dispose()
+        {
+        }
+
         [Fact]
         public void Story1_AC1_Should_return_ticket_when_park_car()
         {
             // given
-            var boy = new Boy();
             var car = new Car("BMW");
 
             // when
@@ -29,7 +45,6 @@ namespace ParkingLotTest
         public void Story1_AC1_Should_return_car_when_give_ticket()
         {
             // given
-            var boy = new Boy();
             var car = new Car("BMW");
 
             // when
@@ -45,7 +60,6 @@ namespace ParkingLotTest
         public void Story1_AC2_Should_park_multiple_cars()
         {
             // given
-            var boy = new Boy();
             var car1 = new Car("BMW");
             var car2 = new Car("Benz");
             var car3 = new Car("Porsche");
@@ -66,7 +80,6 @@ namespace ParkingLotTest
         public void Story1_AC2_Should_fetch_right_car_by_ticket()
         {
             // given
-            var boy = new Boy();
             var car1 = new Car("BMW");
             var car2 = new Car("Benz");
             var car3 = new Car("Porsche");
@@ -91,7 +104,6 @@ namespace ParkingLotTest
         public void Story1_AC3_Should_fetch_null_when_given_wrong_ticket()
         {
             // given
-            var boy = new Boy();
             var car = new Car("BMW");
 
             // when
@@ -108,7 +120,6 @@ namespace ParkingLotTest
         public void Story1_AC4_Should_fetch_null_when_given_used_ticket()
         {
             // given
-            var boy = new Boy();
             var car = new Car("BMW");
 
             // when
@@ -126,7 +137,6 @@ namespace ParkingLotTest
         public void Story1_AC5_Should_not_get_ticket_when_no_position()
         {
             // given
-            var boy = new Boy();
             var car = new Car("BMW");
             var count = 0;
 
@@ -148,7 +158,6 @@ namespace ParkingLotTest
         public void Story1_case_plus_Should_return_wrong_when_park_null()
         {
             // given
-            var boy = new Boy();
 
             // when
             var expected = "wrong car";

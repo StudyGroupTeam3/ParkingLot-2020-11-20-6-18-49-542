@@ -7,14 +7,13 @@ namespace ParkingLot.Models
 {
     public class Boy
     {
-        private List<ParkingLot> parkingLots = new List<ParkingLot>();
-        public Boy()
+        private readonly List<Parkinglot> parkingLots;
+        public Boy(List<Parkinglot> parkingLots)
         {
-            parkingLots.Add(new ParkingLot(1, 10));
-            parkingLots.Add(new ParkingLot(2, 10));
+            this.parkingLots = parkingLots;
         }
 
-        public List<ParkingLot> ParkingLots => parkingLots;
+        public List<Parkinglot> ParkingLots => parkingLots;
 
         public virtual string ParkCar(Car car)
         {

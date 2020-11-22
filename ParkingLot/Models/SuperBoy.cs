@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ParkingLot.Models
 {
-    public class SmartBoy : Boy
+    public class SuperBoy : Boy
     {
-        public SmartBoy(List<Parkinglot> parkingLots) : base(parkingLots)
+        public SuperBoy(List<Parkinglot> parkingLots) : base(parkingLots)
         {
         }
 
@@ -19,7 +19,7 @@ namespace ParkingLot.Models
             }
 
             var usableLot = ParkingLots.Aggregate((current, next) =>
-                current.AvailablePosition >= next.AvailablePosition ? current : next);
+                current.AvailablePositionRate >= next.AvailablePositionRate ? current : next);
 
             if (usableLot != null)
             {

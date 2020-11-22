@@ -5,14 +5,14 @@ using System.Text;
 
 namespace ParkingLot.Models
 {
-    public class ParkingLot
+    public class Parkinglot
     {
         private readonly int capacity;
         private List<CarParked> cars = new List<CarParked>();
         private int lotNumber;
         private int parkingNumber = 1;
 
-        public ParkingLot(int lotNumber, int capacity)
+        public Parkinglot(int lotNumber, int capacity)
         {
             this.lotNumber = lotNumber;
             this.capacity = capacity;
@@ -21,6 +21,8 @@ namespace ParkingLot.Models
         public int Capacity => capacity;
         public int LotNumber => lotNumber;
         public int CarsCount => cars.Count;
+        public double AvailablePosition => capacity - cars.Count;
+        public double AvailablePositionRate => AvailablePosition / capacity;
 
         public string AddCarGetTicket(Car car)
         {
