@@ -26,7 +26,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            parkingBoy.ParkCar(car);
+            parkingBoy.ParkCar(car, out string errorMessage);
             var isCarParked = parkingLot.HasCar(car);
 
             // then
@@ -41,7 +41,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage);
             // then
             Assert.NotNull(parkingTicket);
         }
@@ -54,7 +54,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
             // when
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage);
             bool isParkingTicketCorrect = parkingTicket.ParkingLotId == 0 && parkingTicket.CarId == 0;
             // then
             Assert.True(isParkingTicketCorrect);
@@ -67,7 +67,7 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var expectedCar = new Car();
-            var parkingTicket = parkingBoy.ParkCar(expectedCar);
+            var parkingTicket = parkingBoy.ParkCar(expectedCar, out string errorMessagePark);
             // when
             var actualCar = parkingBoy.FetchCar(parkingTicket, out string errorMessage);
             // then
@@ -82,8 +82,8 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy(parkingLot);
             var expectedCar = new Car();
             var anotherCar = new Car();
-            var parkingTicket = parkingBoy.ParkCar(expectedCar);
-            parkingBoy.ParkCar(anotherCar);
+            var parkingTicket = parkingBoy.ParkCar(expectedCar, out string errorMessagePark1);
+            parkingBoy.ParkCar(anotherCar, out string errorMessagePark2);
             // when
             var actualCar = parkingBoy.FetchCar(parkingTicket, out string errorMessage);
             var isFetchedTheRightCar = expectedCar.Equals(actualCar) && !anotherCar.Equals(actualCar);
@@ -98,7 +98,7 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
             var actualCar = parkingBoy.FetchCar(new ParkingTicket(parkingTicket.ParkingLotId, parkingTicket.CarId + 1), out string errorMessage);
             // then
@@ -112,7 +112,7 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
             var actualCar = parkingBoy.FetchCar(null, out string errorMessage);
             // then
@@ -126,7 +126,7 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage);
             parkingBoy.FetchCar(parkingTicket, out string errorMessage1);
             // when
             var actualCar = parkingBoy.FetchCar(parkingTicket, out string errorMessage2);
@@ -141,10 +141,10 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0, 1);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage1);
             // when
             var anotherCar = new Car();
-            var newParkingTicket = parkingBoy.ParkCar(anotherCar);
+            var newParkingTicket = parkingBoy.ParkCar(anotherCar, out string errorMessage2);
             // then
             Assert.Null(newParkingTicket);
         }
@@ -156,7 +156,7 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             // when
-            var parkingTicket = parkingBoy.ParkCar(null);
+            var parkingTicket = parkingBoy.ParkCar(null, out string errorMessage);
             // then
             Assert.Null(parkingTicket);
         }
@@ -168,9 +168,9 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark1);
             // when
-            var newParkingTicket = parkingBoy.ParkCar(car);
+            var newParkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark2);
             // then
             Assert.Null(newParkingTicket);
         }
@@ -182,7 +182,7 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
             string errorMessage;
             var actualCar = parkingBoy.FetchCar(new ParkingTicket(parkingTicket.ParkingLotId, parkingTicket.CarId + 1), out errorMessage);
@@ -198,7 +198,7 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             parkingBoy.FetchCar(parkingTicket, out string errorMessage1);
             // when
             string errorMessage;
@@ -215,13 +215,28 @@ namespace ParkingLotTest
             var parkingLot = new ParkingLot(0);
             var parkingBoy = new ParkingBoy(parkingLot);
             var car = new Car();
-            var parkingTicket = parkingBoy.ParkCar(car);
+            var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
             string errorMessage;
             var actualCar = parkingBoy.FetchCar(null, out errorMessage);
             // then
             Assert.Null(actualCar);
             Assert.Equal("Please provide your parking ticket.", errorMessage);
+        }
+
+        [Fact]
+        public void Should_return_no_parking_ticket_and_generate_error_message_Not_enough_position_when_the_parking_boy_attempt_to_park_into_a_parking_lot_without_position()
+        {
+            // given
+            var parkingLot = new ParkingLot(0, 0);
+            var parkingBoy = new ParkingBoy(parkingLot);
+            var car = new Car();
+            // when
+            string errorMessage;
+            var parkingTicket = parkingBoy.ParkCar(car, out errorMessage);
+            // then
+            Assert.Null(parkingTicket);
+            Assert.Equal("Not enough position.", errorMessage);
         }
     }
 }
