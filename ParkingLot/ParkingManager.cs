@@ -8,6 +8,11 @@ namespace ParkingLot
     {
         private List<ParkingBoy> manageList = new List<ParkingBoy>();
         private Random rnd = new Random();
+        private List<CarLot<string, Car>> managerLots = new List<CarLot<string, Car>>()
+        {
+            new CarLot<string, Car>(20),
+            new CarLot<string, Car>(20),
+        };
         public ParkingManager(string name) : base(name)
         {
         }
@@ -29,6 +34,11 @@ namespace ParkingLot
         {
             int assignIndex = rnd.Next(manageList.Count);
             return manageList[assignIndex].Fetch(ticket, parkingLots, out fetchMessage);
+        }
+
+        public string SelfPark(Car car, out string parkMessage)
+        {
+            return Park(car, managerLots, out parkMessage);
         }
     }
 }

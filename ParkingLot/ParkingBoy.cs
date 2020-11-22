@@ -81,7 +81,7 @@ namespace ParkingLot
             }
         }
 
-        private int FindLotIndex(List<CarLot<string, Car>> parkinglots)
+        protected int FindLotIndex(List<CarLot<string, Car>> parkinglots)
         {
             int lotIndex = 0;
 
