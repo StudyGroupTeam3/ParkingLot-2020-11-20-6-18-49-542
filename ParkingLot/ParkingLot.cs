@@ -19,6 +19,7 @@
 
         public uint ParkingLotId => this.id;
         public uint CarId => this.carId;
+        public int ParkingPositionNumber => this.capacity - this.parkingLotPlaces.Count;
         protected SortedDictionary<uint, ICar> ParkingLotPlaces => this.parkingLotPlaces;
 
         public void AddCar(ICar car)

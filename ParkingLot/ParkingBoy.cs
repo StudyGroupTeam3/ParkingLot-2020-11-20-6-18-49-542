@@ -14,7 +14,9 @@ namespace ParkingLot
             this.parkingLotList = parkingLotList;
         }
 
-        public ParkingTicket ParkCar(ICar car, out string errorMessage)
+        protected List<ParkingLot> ParkingLotList => this.parkingLotList;
+
+        public virtual ParkingTicket ParkCar(ICar car, out string errorMessage)
         {
             if (!IsInputCarValid(car))
             {
@@ -49,7 +51,7 @@ namespace ParkingLot
             return parkingLot.GetCar(parkingTicket.CarId);
         }
 
-        private bool IsInputCarValid(ICar car)
+        protected bool IsInputCarValid(ICar car)
         {
             if (car is null)
             {
