@@ -4,13 +4,18 @@ using System.Text;
 
 namespace ParkingLot
 {
+    public delegate void FailOperation(string errorMessage);
+
     public class ParkingLotServiceManager : ParkingBoy
     {
-        private List<ParkingBoy> managementList = new List<ParkingBoy>();
+        private readonly List<ParkingBoy> managementList = new List<ParkingBoy>();
+        private string errorMessage = string.Empty;
         public ParkingLotServiceManager(List<ParkingLot> parkingLotList, List<ParkingBoy> managementList) : base(parkingLotList)
         {
             this.managementList = managementList;
         }
+
+        public string ErrorMessage => this.errorMessage;
 
         public void AddParkingBoy(ParkingBoy parkingBoy = null)
         {
@@ -22,7 +27,14 @@ namespace ParkingLot
 
         public ParkingBoy SpecifyParkingBoy()
         {
-            return this.managementList[0];
+            var specifiedParkingBoy = this.managementList[0];
+            specifiedParkingBoy.FailOperation = ParkingBoyFailOperation;
+            return specifiedParkingBoy;
+        }
+
+        private void ParkingBoyFailOperation(string errorMessage)
+        {
+            this.errorMessage = errorMessage;
         }
     }
 }

@@ -105,5 +105,24 @@ namespace ParkingLotTest
             // then
             Assert.Equal("Not enough position.", errorMessage);
         }
+
+        [Fact]
+        public void Should_parking_lot_service_manager_has_have_same_error_message_with_prcking_boy_when_parking_boy_fails_operation()
+        {
+            // given
+            List<ParkingLot> parkingLotListForManager = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            List<ParkingLot> parkingLotListForParkingBoy = new List<ParkingLot> { new ParkingLot(2, 0), new ParkingLot(3, 0) };
+            var standardParkingBoy = new ParkingBoy(parkingLotListForParkingBoy);
+            var parkingLotServiceManager = new ParkingLotServiceManager(parkingLotListForManager, new List<ParkingBoy>());
+            parkingLotServiceManager.AddParkingBoy(standardParkingBoy);
+            var specifiedParkingBoy = parkingLotServiceManager.SpecifyParkingBoy();
+            // when
+            string errorMessage;
+            specifiedParkingBoy.ParkCar(new Car(), out errorMessage);
+            string errorMessageFromManager = parkingLotServiceManager.ErrorMessage;
+            // then
+            Assert.Equal("Not enough position.", errorMessage);
+            Assert.Equal(errorMessage, errorMessageFromManager);
+        }
     }
 }

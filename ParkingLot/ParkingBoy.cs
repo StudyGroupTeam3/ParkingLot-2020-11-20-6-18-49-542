@@ -8,10 +8,16 @@ namespace ParkingLot
     public class ParkingBoy
     {
         private readonly List<ParkingLot> parkingLotList;
+        private FailOperation failOperation;
 
         public ParkingBoy(List<ParkingLot> parkingLotList)
         {
             this.parkingLotList = parkingLotList;
+        }
+
+        public FailOperation FailOperation
+        {
+            set { this.failOperation = value; }
         }
 
         protected List<ParkingLot> ParkingLotList => this.parkingLotList;
@@ -27,6 +33,7 @@ namespace ParkingLot
             if (this.parkingLotList.Where(parkingLot => parkingLot.HasPosition()).ToList().Count == 0)
             {
                 errorMessage = "Not enough position.";
+                failOperation?.Invoke(errorMessage);
                 return null;
             }
 
@@ -71,12 +78,14 @@ namespace ParkingLot
             if (parkingTicket is null)
             {
                 errorMessage = "Please provide your parking ticket.";
+                failOperation?.Invoke(errorMessage);
                 return false;
             }
 
             if (this.parkingLotList.Where(parkingLot => parkingLot.ParkingLotId == parkingTicket.ParkingLotId).ToList().Count == 0)
             {
                 errorMessage = "Unrecognized parking ticket.";
+                failOperation?.Invoke(errorMessage);
                 return false;
             }
 
@@ -86,12 +95,14 @@ namespace ParkingLot
             if (!parkingLot.IsCarIdProvided(parkingTicket.CarId))
             {
                 errorMessage = "Unrecognized parking ticket.";
+                failOperation?.Invoke(errorMessage);
                 return false;
             }
 
             if (!parkingLot.HasCarId(parkingTicket.CarId))
             {
                 errorMessage = "Unrecognized parking ticket.";
+                failOperation?.Invoke(errorMessage);
                 return false;
             }
 
