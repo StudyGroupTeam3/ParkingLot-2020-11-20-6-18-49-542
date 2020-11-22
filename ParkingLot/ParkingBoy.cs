@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ParkingLot
@@ -52,32 +53,34 @@ namespace ParkingLot
             return null;
         }
 
-        public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglot)
+        public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglots)
         {
             var plateNumber = ticket.Split(" ")[indexOfPlateNumber];
-            if (parkinglot[0].ContainsKey(plateNumber))
+            var targetParkinglot = parkinglots.Where(lot => lot.ContainsKey(plateNumber)).ToList();
+            if (targetParkinglot.Count == 0)
             {
-                var car = parkinglot[0][plateNumber];
-                parkinglot[0].Remove(plateNumber);
-                return car;
+                return null;
             }
 
-            return null;
+            var car = targetParkinglot[0][plateNumber];
+            targetParkinglot[0].Remove(plateNumber);
+            return car;
         }
 
-        public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglot, out string message)
+        public Car Fetch(string ticket, List<Dictionary<string, Car>> parkinglots, out string message)
         {
             var plateNumber = ticket.Split(" ")[indexOfPlateNumber];
-            if (parkinglot[0].ContainsKey(plateNumber))
+            var targetParkinglot = parkinglots.Where(lot => lot.ContainsKey(plateNumber)).ToList();
+            if (targetParkinglot.Count == 0)
             {
-                var car = parkinglot[0][plateNumber];
-                parkinglot[0].Remove(plateNumber);
-                message = "Here is your car";
-                return car;
+                message = "Unrecognized parking ticket.";
+                return null;
             }
 
-            message = "Unrecognized parking ticket.";
-            return null;
+            var car = targetParkinglot[0][plateNumber];
+            targetParkinglot[0].Remove(plateNumber);
+            message = "Here is your car";
+            return car;
         }
 
         public Car Fetch(List<Dictionary<string, Car>> parkinglot)
