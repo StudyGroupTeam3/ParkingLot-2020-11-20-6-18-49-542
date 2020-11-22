@@ -12,7 +12,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoy_Return_Correct_Error_Message_Given_Wrong_Tickect()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
@@ -35,7 +35,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoy_Return_Correct_Error_Message_Given_Used_Tickect()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
@@ -63,7 +63,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoy_Return_Correct_Error_Message_Given_No_Tickect()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
@@ -88,7 +88,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoy_Return_Correct_Error_Message_When_Parkinglot_Is_Full()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(10),

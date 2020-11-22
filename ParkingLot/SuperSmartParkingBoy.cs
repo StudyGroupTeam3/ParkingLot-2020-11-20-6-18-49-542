@@ -6,6 +6,10 @@ namespace ParkingLot
 {
     public class SuperSmartParkingBoy : ParkingBoy
     {
+        public SuperSmartParkingBoy(string name) : base(name)
+        {
+        }
+
         public override string Park(Car car, List<CarLot<string, Car>> parkinglots, out string message)
         {
             var lotIndex = SuperSmartFindLotIndex(parkinglots);

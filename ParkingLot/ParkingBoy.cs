@@ -7,6 +7,16 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
+        public ParkingBoy(string name)
+        {
+            Name = name;
+        }
+
+        public string Name
+        {
+            get;
+        }
+
         protected int IndexOfPlateNumber => 1;
         public virtual string Park(Car car, List<CarLot<string, Car>> parkinglots, out string message)
         {

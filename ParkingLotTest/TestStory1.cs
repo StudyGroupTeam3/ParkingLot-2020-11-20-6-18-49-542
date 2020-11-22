@@ -16,7 +16,7 @@ namespace ParkingLotTest
         {
             //Given
             string message = string.Empty;
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var car = new Car(plateNumber);
             var parkingLots = new List<CarLot<string, Car>>()
             {
@@ -39,7 +39,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyFetch_Return_Right_Car(string plateNumber, string parkingTicket)
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string message = string.Empty;
             string fectchmessage = string.Empty;
             var fetchedCar = new Car(plateNumber);
@@ -66,7 +66,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyFecth_Return_Right_Car()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string message = string.Empty;
             string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
@@ -91,7 +91,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyFecth_Return_No_Car_Given_Wrong_Tickect()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
@@ -111,7 +111,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyFecth_Return_No_Car_Given_No_Tickect()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var fetchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
@@ -134,7 +134,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyFecth_Return_No_Car_Given_Used_Tickect()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
@@ -159,7 +159,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyPark_Return_No_Ticket_Given_Full_Parkinglot()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
@@ -179,7 +179,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyPark_Return_No_Ticket_Given_Parked_Car()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {

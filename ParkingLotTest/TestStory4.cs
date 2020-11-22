@@ -17,7 +17,7 @@ namespace ParkingLotTest
         public void Should_SmartParkingBoy_Park_The_Car_To_The_Parkinglot_With_More_Empty_Positions(int currentLoadforPark1, int currentLoadforPark2)
         {
             //Given
-            var boy = new SmartParkingBoy();
+            var boy = new SmartParkingBoy("Jack");
             var car = new Car("RJ_45675415");
             string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()

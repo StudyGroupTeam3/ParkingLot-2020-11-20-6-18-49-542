@@ -13,7 +13,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoy_Park_The_Car_To_The_NextParkinglot_When_The_Current_Is_Full(string plateNumber, string parkingTicket)
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var car = new Car(plateNumber);
             string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
@@ -42,7 +42,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoy_Park_The_Car_To_The_CurrentParkinglot_When_The_Current_IsNot_Full(string plateNumber, string parkingTicket)
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var car = new Car(plateNumber);
             string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
@@ -71,7 +71,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoy_Return_Null_When_Both_Parkinglots_Are_Full(string plateNumber, string parkingTicket)
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             var car = new Car(plateNumber);
             string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
@@ -101,7 +101,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyFecth_Return_Right_Car_From_First_Parkinglot()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string message = string.Empty;
             string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
@@ -124,7 +124,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyFecth_Return_Right_Car_From_Second_Parkinglot()
         {
             //Given
-            var boy = new ParkingBoy();
+            var boy = new ParkingBoy("Jack");
             string message = string.Empty;
             string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()

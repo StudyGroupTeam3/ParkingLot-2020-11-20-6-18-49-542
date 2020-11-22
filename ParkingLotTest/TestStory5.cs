@@ -17,7 +17,7 @@ namespace ParkingLotTest
         public void Should_SuperSmartParkingBoy_Park_The_Car_To_The_Parkinglot_With_Higher_EmptyRate(int currentLotLoad1, int currentLotLoad2, int loadCapacity1, int loadCapacity2)
         {
             //Given
-            var boy = new SuperSmartParkingBoy();
+            var boy = new SuperSmartParkingBoy("Jack");
             var car = new Car("RJ_45675415");
             string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
