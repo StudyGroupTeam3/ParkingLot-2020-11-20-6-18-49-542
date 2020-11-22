@@ -43,7 +43,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Should_parking_lot_service_manager_add_super_smart_parking_boy_to_managementList()
+        public void Should_parking_lot_service_manager_return_parking_boy_to_do_parking_works()
         {
             // given
             List<ParkingLot> parkingLotListForManager = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
@@ -56,6 +56,21 @@ namespace ParkingLotTest
             bool isSuperSmartParkingBoyAdded = managementList.Contains(superSmartParkingBoy);
             // then
             Assert.True(isSuperSmartParkingBoyAdded);
+        }
+
+        [Fact]
+        public void Should_parking_lot_service_manager_add_super_smart_parking_boy_to_managementList()
+        {
+            // given
+            List<ParkingLot> parkingLotListForManager = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            List<ParkingLot> parkingLotListForParkingBoy = new List<ParkingLot> { new ParkingLot(2), new ParkingLot(3) };
+            var expectedSuperSmartParkingBoy = new SuperSmartParkingBoy(parkingLotListForParkingBoy);
+            var parkingLotServiceManager = new ParkingLotServiceManager(parkingLotListForManager, new List<ParkingBoy>());
+            parkingLotServiceManager.AddParkingBoy(expectedSuperSmartParkingBoy);
+            // when
+            var specifiedParkingBoy = parkingLotServiceManager.SpecifyParkingBoy();
+            // then
+            Assert.Equal(expectedSuperSmartParkingBoy, specifiedParkingBoy);
         }
     }
 }

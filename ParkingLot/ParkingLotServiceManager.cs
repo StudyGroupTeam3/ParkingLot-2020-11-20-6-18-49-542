@@ -19,5 +19,10 @@ namespace ParkingLot
                 this.managementList.Add(parkingBoy);
             }
         }
+
+        public ParkingBoy SpecifyParkingBoy()
+        {
+            return this.managementList[0];
+        }
     }
 }
