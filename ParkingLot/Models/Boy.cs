@@ -44,7 +44,12 @@ namespace ParkingLot.Models
                 return new Car("Please provide your parking ticket");
             }
 
-            var lotIndex = int.Parse(ticket[..2]) - 1;
+            if (int.Parse(ticket[..2]) != boyNumber)
+            {
+                return new Car("Unrecognized parking ticket");
+            }
+
+            var lotIndex = int.Parse(ticket[2..4]) - 1;
             var car = parkingLots[lotIndex].GetCarGivenTicket(ticket);
 
             return car ?? new Car("Unrecognized parking ticket");

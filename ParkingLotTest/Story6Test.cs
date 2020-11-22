@@ -60,5 +60,23 @@ namespace ParkingLotTest
             // then
             Assert.Equal(expected, actual);
         }
+
+        [Fact]
+        public void AC1_Should_return_wrong_message_when_manager_give_boy_ticket_from_another_parkingLot()
+        {
+            // given
+            var car = new Car("BMW");
+
+            // when
+            manager.AddBoy(boy);
+            manager.AddBoy(smartBoy);
+            manager.CallBoy(1).ParkCar(car);
+            var ticket2 = manager.CallBoy(2).ParkCar(car);
+            var expected = "Unrecognized parking ticket";
+            var actual = manager.CallBoy(1).FetchCar(ticket2);
+
+            // then
+            Assert.Equal(expected, actual.ToString());
+        }
     }
 }
