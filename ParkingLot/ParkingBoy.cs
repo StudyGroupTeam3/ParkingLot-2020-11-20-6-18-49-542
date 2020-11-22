@@ -16,13 +16,7 @@ namespace ParkingLot
 
         public ParkingTicket ParkCar(ICar car, out string errorMessage)
         {
-            if (car is null)
-            {
-                errorMessage = null;
-                return null;
-            }
-
-            if (this.parkingLotList.Where(parkingLot => parkingLot.HasCar(car)).ToList().Count > 0)
+            if (!IsInputCarValid(car))
             {
                 errorMessage = null;
                 return null;
@@ -44,16 +38,44 @@ namespace ParkingLot
 
         public ICar FetchCar(ParkingTicket parkingTicket, out string errorMessage)
         {
+            if (!IsInputParkingTicketValid(parkingTicket, out errorMessage))
+            {
+                return null;
+            }
+
+            var parkingLot =
+                this.parkingLotList.FirstOrDefault(parkingLot => parkingLot.ParkingLotId == parkingTicket.ParkingLotId);
+            errorMessage = null;
+            return parkingLot.GetCar(parkingTicket.CarId);
+        }
+
+        private bool IsInputCarValid(ICar car)
+        {
+            if (car is null)
+            {
+                return false;
+            }
+
+            if (this.parkingLotList.Where(parkingLot => parkingLot.HasCar(car)).ToList().Count > 0)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsInputParkingTicketValid(ParkingTicket parkingTicket, out string errorMessage)
+        {
             if (parkingTicket is null)
             {
                 errorMessage = "Please provide your parking ticket.";
-                return null;
+                return false;
             }
 
             if (this.parkingLotList.Where(parkingLot => parkingLot.ParkingLotId == parkingTicket.ParkingLotId).ToList().Count == 0)
             {
                 errorMessage = "Unrecognized parking ticket.";
-                return null;
+                return false;
             }
 
             var parkingLot =
@@ -62,17 +84,17 @@ namespace ParkingLot
             if (!parkingLot.IsCarIdProvided(parkingTicket.CarId))
             {
                 errorMessage = "Unrecognized parking ticket.";
-                return null;
+                return false;
             }
 
             if (!parkingLot.HasCarId(parkingTicket.CarId))
             {
                 errorMessage = "Unrecognized parking ticket.";
-                return null;
+                return false;
             }
 
             errorMessage = null;
-            return parkingLot.GetCar(parkingTicket.CarId);
+            return true;
         }
     }
 }
