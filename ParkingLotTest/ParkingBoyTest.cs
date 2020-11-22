@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ParkingLotTest
@@ -13,7 +14,8 @@ namespace ParkingLotTest
         public void Should_generate_ParkingBoy()
         {
             // given
-            var parkingBoy = new ParkingBoy(new ParkingLot(0));
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             // then
             Assert.NotNull(parkingBoy);
         }
@@ -22,12 +24,12 @@ namespace ParkingLotTest
         public void Should_park_car_when_given_a_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             // when
             parkingBoy.ParkCar(car, out string errorMessage);
-            var isCarParked = parkingLot.HasCar(car);
+            var isCarParked = parkingLotList.Where(parkingLot => parkingLot.HasCar(car)).ToList().Count > 0;
 
             // then
             Assert.True(isCarParked);
@@ -37,8 +39,8 @@ namespace ParkingLotTest
         public void Should_return_parking_ticket_when_parked_a_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             // when
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage);
@@ -50,8 +52,8 @@ namespace ParkingLotTest
         public void Should_return_correct_parking_ticket_when_parked_a_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             // when
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage);
@@ -64,8 +66,8 @@ namespace ParkingLotTest
         public void Should_return_the_car_when_use_correct_parking_ticket_to_fetch_the_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var expectedCar = new Car();
             var parkingTicket = parkingBoy.ParkCar(expectedCar, out string errorMessagePark);
             // when
@@ -78,8 +80,8 @@ namespace ParkingLotTest
         public void Should_get_the_right_car_when_add_multiple_cars()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var expectedCar = new Car();
             var anotherCar = new Car();
             var parkingTicket = parkingBoy.ParkCar(expectedCar, out string errorMessagePark1);
@@ -95,8 +97,8 @@ namespace ParkingLotTest
         public void Should_return_null_when_given_not_provided_ticket_to_fetch_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
@@ -109,8 +111,8 @@ namespace ParkingLotTest
         public void Should_return_null_when_not_given_a_parking_ticket_to_fetch_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
@@ -123,8 +125,8 @@ namespace ParkingLotTest
         public void Should_return_null_when_use_a_used_parking_ticket_to_fetch_a_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage);
             parkingBoy.FetchCar(parkingTicket, out string errorMessage1);
@@ -138,8 +140,8 @@ namespace ParkingLotTest
         public void Should_return_no_ticket_when_try_to_park_a_car_when_there_is_no_position_in_parking_lot()
         {
             // given
-            var parkingLot = new ParkingLot(0, 1);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0, 1), new ParkingLot(1, 0) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessage1);
             // when
@@ -153,8 +155,8 @@ namespace ParkingLotTest
         public void Should_return_no_ticket_when_passing_a_null_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             // when
             var parkingTicket = parkingBoy.ParkCar(null, out string errorMessage);
             // then
@@ -165,8 +167,8 @@ namespace ParkingLotTest
         public void Should_return_no_ticket_when_passing_a_parked_car()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark1);
             // when
@@ -179,8 +181,8 @@ namespace ParkingLotTest
         public void Should_return_no_car_and_generate_error_message_Unrecognized_parking_ticket_when_parking_boy_does_not_provide_the_ticket()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
@@ -195,8 +197,8 @@ namespace ParkingLotTest
         public void Should_return_no_car_and_generate_error_message_Unrecognized_parking_ticket_when_customer_provide_a_used_ticket()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             parkingBoy.FetchCar(parkingTicket, out string errorMessage1);
@@ -212,8 +214,8 @@ namespace ParkingLotTest
         public void Should_return_no_car_and_generate_error_message_Please_provide_your_parking_ticket_when_customer_does_not_provide_a_ticket()
         {
             // given
-            var parkingLot = new ParkingLot(0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0), new ParkingLot(1) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             var parkingTicket = parkingBoy.ParkCar(car, out string errorMessagePark);
             // when
@@ -228,8 +230,8 @@ namespace ParkingLotTest
         public void Should_return_no_parking_ticket_and_generate_error_message_Not_enough_position_when_the_parking_boy_attempt_to_park_into_a_parking_lot_without_position()
         {
             // given
-            var parkingLot = new ParkingLot(0, 0);
-            var parkingBoy = new ParkingBoy(parkingLot);
+            List<ParkingLot> parkingLotList = new List<ParkingLot> { new ParkingLot(0, 0), new ParkingLot(1, 0) };
+            var parkingBoy = new ParkingBoy(parkingLotList);
             var car = new Car();
             // when
             string errorMessage;

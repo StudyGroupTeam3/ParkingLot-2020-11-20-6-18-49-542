@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private readonly ParkingLot parkingLot;
+        private readonly List<ParkingLot> parkingLotList;
 
-        public ParkingBoy(ParkingLot parkingLot)
+        public ParkingBoy(List<ParkingLot> parkingLotList)
         {
-            this.parkingLot = parkingLot;
+            this.parkingLotList = parkingLotList;
         }
 
         public ParkingTicket ParkCar(ICar car, out string errorMessage)
@@ -21,21 +22,22 @@ namespace ParkingLot
                 return null;
             }
 
-            if (this.parkingLot.HasCar(car))
+            if (this.parkingLotList.Where(parkingLot => parkingLot.HasCar(car)).ToList().Count > 0)
             {
                 errorMessage = null;
                 return null;
             }
 
-            if (!this.parkingLot.HasPosition())
+            if (this.parkingLotList.Where(parkingLot => parkingLot.HasPosition()).ToList().Count == 0)
             {
                 errorMessage = "Not enough position.";
                 return null;
             }
 
-            uint carId = this.parkingLot.CarId;
-            uint parkingLotId = this.parkingLot.ParkingLotId;
-            this.parkingLot.AddCar(car);
+            var parkingLot = this.parkingLotList.FirstOrDefault(parkingLot => parkingLot.HasPosition());
+            uint parkingLotId = parkingLot.ParkingLotId;
+            uint carId = parkingLot.CarId;
+            parkingLot.AddCar(car);
             errorMessage = null;
             return new ParkingTicket(parkingLotId, carId);
         }
@@ -48,20 +50,29 @@ namespace ParkingLot
                 return null;
             }
 
-            if (!this.parkingLot.IsCarIdProvided(parkingTicket.CarId))
+            if (this.parkingLotList.Where(parkingLot => parkingLot.ParkingLotId == parkingTicket.ParkingLotId).ToList().Count == 0)
             {
                 errorMessage = "Unrecognized parking ticket.";
                 return null;
             }
 
-            if (!this.parkingLot.HasCarId(parkingTicket.CarId))
+            var parkingLot =
+                this.parkingLotList.FirstOrDefault(parkingLot => parkingLot.ParkingLotId == parkingTicket.ParkingLotId);
+
+            if (!parkingLot.IsCarIdProvided(parkingTicket.CarId))
+            {
+                errorMessage = "Unrecognized parking ticket.";
+                return null;
+            }
+
+            if (!parkingLot.HasCarId(parkingTicket.CarId))
             {
                 errorMessage = "Unrecognized parking ticket.";
                 return null;
             }
 
             errorMessage = null;
-            return this.parkingLot.GetCar(parkingTicket.CarId);
+            return parkingLot.GetCar(parkingTicket.CarId);
         }
     }
 }
