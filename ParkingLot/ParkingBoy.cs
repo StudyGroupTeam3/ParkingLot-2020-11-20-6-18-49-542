@@ -40,7 +40,7 @@ namespace ParkingLot
         {
             if (parkingTicket is null)
             {
-                errorMessage = null;
+                errorMessage = "Please provide your parking ticket.";
                 return null;
             }
 
