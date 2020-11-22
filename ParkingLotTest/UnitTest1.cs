@@ -115,13 +115,37 @@ namespace ParkingLotTest
         }
 
         [Theory]
-        [InlineData("car-11")]
         [InlineData("car-1")]
         [InlineData("")]
         public void ShouldHaveNoTicketWhenPositionIsFull(string car)
         {
             // given
             string expected = "Not enough position.";
+            // when
+            List<string> cars = new List<string>()
+            {
+                "car-1", "car-2", "car-3", "car-4", "car-5",
+                "car-6", "car-7", "car-8", "car-9", "car-10",
+                "car-11", "car-12", "car-13", "car-14", "car-15",
+                "car-16", "car-17", "car-18", "car-19", "car-20",
+            };
+            ParkingBoy parkingBoy = new ParkingBoy();
+            for (int i = 0; i < cars.Count; i++)
+            {
+                parkingBoy.ParkingCar(cars[i]);
+            }
+
+            string actual = parkingBoy.ParkingCar(car);
+            // then
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData("car-11")]
+        public void ShouldHaveTicketWhenThefirstPositionIsFull(string car)
+        {
+            // given
+            string expected = "ticket-2-1";
             // when
             List<string> cars = new List<string>()
             {

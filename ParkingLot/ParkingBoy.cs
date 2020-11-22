@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 
@@ -7,28 +9,35 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        private List<string> tickets = new List<string>()
-        {
-            "ticket-1-1", "ticket-1-2", "ticket-1-3", "ticket-1-4", "ticket-1-5",
-            "ticket-1-6", "ticket-1-7", "ticket-1-8", "ticket-1-9", "ticket-1-10",
-        };
-
-        private List<string> ticketsUsed = new List<string>();
-
+        private int capacity = 10;
         private Dictionary<string, string> carAndTicketInformation = new Dictionary<string, string>();
 
-        public bool HasPosition()
+        public List<string> GetTickets(string parkingLotName)
         {
-            return carAndTicketInformation.Keys.Count < 10;
+            List<string> tickets = new List<string>();
+            for (int i = 0; i < capacity; i++)
+            {
+                tickets.Add($"ticket-{parkingLotName}-{i + 1}");
+            }
+
+            return tickets;
         }
 
         public string ParkingCar(string car)
         {
-            if (HasPosition())
+            if (carAndTicketInformation.Count < capacity)
             {
-                string ticket = tickets[0];
+                List<string> tickets = GetTickets("1");
+                string ticket = tickets[carAndTicketInformation.Count];
                 carAndTicketInformation.Add(ticket, car);
-                tickets.Remove(ticket);
+                return ticket;
+            }
+
+            if (carAndTicketInformation.Count >= capacity && carAndTicketInformation.Count < 2 * capacity)
+            {
+                List<string> tickets = GetTickets("2");
+                string ticket = tickets[carAndTicketInformation.Count - capacity];
+                carAndTicketInformation.Add(ticket, car);
                 return ticket;
             }
 
@@ -48,7 +57,6 @@ namespace ParkingLot
             }
 
             string fecthedCar = carAndTicketInformation[ticket];
-            ticketsUsed.Add(ticket);
             carAndTicketInformation.Remove(ticket);
             //tickets.Add(ticket);
             return fecthedCar;
