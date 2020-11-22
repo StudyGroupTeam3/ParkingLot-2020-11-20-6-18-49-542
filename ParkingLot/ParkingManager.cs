@@ -40,5 +40,10 @@ namespace ParkingLot
         {
             return Park(car, managerLots, out parkMessage);
         }
+
+        public Car SelfFetch(string ticket, out string fetchMessage)
+        {
+            return Fetch(ticket, managerLots, out fetchMessage);
+        }
     }
 }

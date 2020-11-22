@@ -104,5 +104,28 @@ namespace ParkingLotTest
             Assert.IsType<string>(result);
             Assert.Equal(expected, result);
         }
+
+        [Theory]
+        [InlineData("RJ_36528", "SuperPark: RJ_36528")]
+        [InlineData("BJ_88888", "SuperPark: BJ_88888")]
+        [InlineData("NY_34987713", "SuperPark: NY_34987713")]
+        public void Should_Manager_Can_Fetch_From_Private_Lots(string plateNumber, string parkingTicket)
+        {
+            //Given
+            var manager = new ParkingManager("Chris");
+            string parkMessage = string.Empty;
+            string fectchMessage = string.Empty;
+            var fetchedCar = new Car(plateNumber);
+            var ticket = parkingTicket;
+            manager.SelfPark(fetchedCar, out parkMessage);
+            Car expected = fetchedCar;
+
+            //When
+            var result = manager.SelfFetch(ticket, out fectchMessage);
+
+            //Then
+            Assert.IsType<Car>(result);
+            Assert.Equal(expected, result);
+        }
     }
 }
