@@ -65,7 +65,7 @@ namespace ParkingLotTest
             var boy = new ParkingBoy();
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithSomeCars()
+                LotInitialize.FillLotWithCars(3)
             };
             var ticket = "SuperPark: RJ_12784";
             Car expected = parkingLots[0]["RJ_12784"];
@@ -87,7 +87,7 @@ namespace ParkingLotTest
             var boy = new ParkingBoy();
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithSomeCars()
+                LotInitialize.FillLotWithCars(3)
             };
             var ticket = "SuperPark: 456213154";
             Car expected = null;
@@ -106,7 +106,7 @@ namespace ParkingLotTest
             var boy = new ParkingBoy();
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithSomeCars()
+                LotInitialize.FillLotWithCars(3)
             };
 
             Car expected = null;
@@ -128,7 +128,7 @@ namespace ParkingLotTest
             var boy = new ParkingBoy();
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithSomeCars()
+                LotInitialize.FillLotWithCars(3),
             };
 
             var ticket = "SuperPark: RJ_12784";
@@ -152,7 +152,7 @@ namespace ParkingLotTest
             var boy = new ParkingBoy();
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithTenCars(),
+                LotInitialize.FillLotWithCars(10),
             };
             var car = new Car("BJ_454867");
             string expected = null;
@@ -171,7 +171,7 @@ namespace ParkingLotTest
             var boy = new ParkingBoy();
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithSomeCars(),
+                LotInitialize.FillLotWithCars(3),
             };
             var car = new Car("RJ_12784");
             string expected = null;

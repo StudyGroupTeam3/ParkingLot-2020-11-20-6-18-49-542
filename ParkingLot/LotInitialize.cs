@@ -6,14 +6,10 @@ namespace ParkingLot
 {
     public class LotInitialize
     {
-        public static Dictionary<string, Car> FillLotWithSomeCars()
+        public static Dictionary<string, Car> FillLotWithCars(int carNumber)
         {
-            var cars = new List<Car>()
-            {
-                new Car("RJ_12784"),
-                new Car("RJ_34543"),
-                new Car("RJ_12446"),
-            };
+            var parkinglotInitilizer = new LotInitialize();
+            var cars = parkinglotInitilizer.GenerateCars(carNumber);
             var parkingLot = new Dictionary<string, Car>();
 
             foreach (var car in cars)
@@ -24,29 +20,24 @@ namespace ParkingLot
             return parkingLot;
         }
 
-        public static Dictionary<string, Car> FillLotWithTenCars()
+        private string GeneratePlateNumber()
         {
-            var cars = new List<Car>()
-            {
-                new Car("RJ_12335"),
-                new Car("RJ_65421"),
-                new Car("RJ_45675"),
-                new Car("RJ_15456"),
-                new Car("RJ_45731"),
-                new Car("RJ_45372"),
-                new Car("RJ_45326"),
-                new Car("RJ_78341"),
-                new Car("RJ_45387"),
-                new Car("RJ_78635"),
-            };
-            var parkingLot = new Dictionary<string, Car>();
+            Random rnd = new Random();
+            var platenumber = rnd.Next(1000, 9999);
+            return $"CityCode_{platenumber}";
+        }
 
-            foreach (var car in cars)
+        private List<Car> GenerateCars(int carNumber)
+        {
+            var cars = new List<Car>();
+            int loopIndex = 0;
+            while (loopIndex < carNumber)
             {
-                parkingLot.Add(car.PlateNumber, car);
+                cars.Add(new Car(GeneratePlateNumber()));
+                loopIndex += 1;
             }
 
-            return parkingLot;
+            return cars;
         }
     }
 }

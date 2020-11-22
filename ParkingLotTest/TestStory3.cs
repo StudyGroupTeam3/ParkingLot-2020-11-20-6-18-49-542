@@ -17,8 +17,8 @@ namespace ParkingLotTest
             var car = new Car(plateNumber);
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithTenCars(),
-                LotInitialize.FillLotWithSomeCars(),
+                LotInitialize.FillLotWithCars(10),
+                LotInitialize.FillLotWithCars(3),
             };
             string expectedTicket = parkingTicket;
             int loadsOfSecondParkinglot = parkingLots[1].Count;
@@ -45,8 +45,8 @@ namespace ParkingLotTest
             var car = new Car(plateNumber);
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithSomeCars(),
-                LotInitialize.FillLotWithTenCars(),
+                LotInitialize.FillLotWithCars(3),
+                LotInitialize.FillLotWithCars(10),
             };
             int loadsOfFirstParkinglot = parkingLots[0].Count;
             string expectedTicket = parkingTicket;
@@ -73,8 +73,8 @@ namespace ParkingLotTest
             var car = new Car(plateNumber);
             var parkingLots = new List<Dictionary<string, Car>>()
             {
-                LotInitialize.FillLotWithTenCars(),
-                LotInitialize.FillLotWithTenCars(),
+                LotInitialize.FillLotWithCars(10),
+                LotInitialize.FillLotWithCars(10),
             };
             string expectedTicket = null;
             int expectedLoadsOfFirstParkinglot = 10;
@@ -89,6 +89,28 @@ namespace ParkingLotTest
             Assert.Equal(expectedTicket, actualTicket);
             Assert.Equal(expectedLoadsOfFirstParkinglot, actualLoadsOfFirstParkinglot);
             Assert.Equal(expectedLoadsOfSecondParkinglot, actualLoadsOfSecondParkinglot);
+        }
+    }
+
+    public class Story3AC2
+    {
+        [Fact]
+        public void Should_ParkingBoyFecth_Return_Right_Car_From_Multiple_Parkinglots()
+        {
+            //Given
+            var boy = new ParkingBoy();
+            var parkingLots = new List<Dictionary<string, Car>>()
+            {
+                LotInitialize.FillLotWithCars(3),
+            };
+            var ticket = "SuperPark: RJ_12784";
+            Car expected = parkingLots[0]["RJ_12784"];
+
+            //When
+            var result = boy.Fetch(ticket, parkingLots);
+
+            //Then
+            Assert.Equal(expected, result);
         }
     }
 }
