@@ -20,6 +20,20 @@ namespace ParkingLot
             return parkingLot;
         }
 
+        public static CarLot<string, Car> FillLotWithCars(int carNumber, int specifyCapacity)
+        {
+            var parkingLot = new CarLot<string, Car>(specifyCapacity);
+            int loopIndex = 0;
+            while (loopIndex < carNumber)
+            {
+                var parkedCar = new Car(GeneratePlateNumber());
+                parkingLot.Add(parkedCar.PlateNumber, parkedCar);
+                loopIndex += 1;
+            }
+
+            return parkingLot;
+        }
+
         private static string GeneratePlateNumber()
         {
             Random rnd = new Random();
