@@ -28,7 +28,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC1_Should_return_ticket_when_park_car()
+        public void AC1_Should_return_ticket_when_park_car()
         {
             // given
             var car = new Car("BMW");
@@ -42,7 +42,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC1_Should_return_car_when_give_ticket()
+        public void AC1_Should_return_car_when_give_ticket()
         {
             // given
             var car = new Car("BMW");
@@ -57,7 +57,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC2_Should_park_multiple_cars()
+        public void AC2_Should_park_multiple_cars()
         {
             // given
             var car1 = new Car("BMW");
@@ -77,7 +77,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC2_Should_fetch_right_car_by_ticket()
+        public void AC2_Should_fetch_right_car_by_ticket()
         {
             // given
             var car1 = new Car("BMW");
@@ -101,7 +101,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC3_Should_fetch_null_when_given_wrong_ticket()
+        public void AC3_Should_fetch_null_when_given_wrong_ticket()
         {
             // given
             var car = new Car("BMW");
@@ -117,7 +117,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC4_Should_fetch_null_when_given_used_ticket()
+        public void AC4_Should_fetch_null_when_given_used_ticket()
         {
             // given
             var car = new Car("BMW");
@@ -134,7 +134,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_AC5_Should_not_get_ticket_when_no_position()
+        public void AC5_Should_not_get_ticket_when_no_position()
         {
             // given
             var car = new Car("BMW");
@@ -155,7 +155,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story1_case_plus_Should_return_wrong_when_park_null()
+        public void Case_plus_Should_return_wrong_when_park_null()
         {
             // given
 

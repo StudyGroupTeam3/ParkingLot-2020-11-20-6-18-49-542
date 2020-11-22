@@ -10,7 +10,7 @@ namespace ParkingLotTest
     public class Story2Test
     {
         [Fact]
-        public void Story2_AC1_Should_return_Unrecognized_parking_ticket_when_give_wrong_ticket()
+        public void AC1_Should_return_Unrecognized_parking_ticket_when_give_wrong_ticket()
         {
             // given
             var boy = new Boy(new List<Parkinglot>()
@@ -27,7 +27,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story2_AC1_Should_return_Unrecognized_parking_ticket_when_give_ticket_used()
+        public void AC1_Should_return_Unrecognized_parking_ticket_when_give_ticket_used()
         {
             // given
             var boy = new Boy(new List<Parkinglot>()
@@ -50,7 +50,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story2_AC2_Should_return_Please_provide_your_parking_ticket_when_give_null()
+        public void AC2_Should_return_Please_provide_your_parking_ticket_when_give_null()
         {
             // given
             var boy = new Boy(new List<Parkinglot>()
@@ -70,7 +70,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Story2_AC3_Should_return_Not_enough_Position_parking_when_park_car_into_parking_lot_without_position()
+        public void AC3_Should_return_Not_enough_Position_parking_when_park_car_into_parking_lot_without_position()
         {
             // given
             var boy = new Boy(new List<Parkinglot>()

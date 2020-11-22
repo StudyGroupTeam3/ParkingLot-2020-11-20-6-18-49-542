@@ -9,7 +9,7 @@ namespace ParkingLotTest
     public class Story4Test
     {
         [Fact]
-        public void Story4_AC1and2_Should_return_6cars_from_Lot1_5car_from_Lot2()
+        public void AC1and2_Should_return_6cars_from_Lot1_5car_from_Lot2()
         {
             // given
             var smartBoy = new SmartBoy(new List<Parkinglot>()
