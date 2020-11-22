@@ -10,16 +10,7 @@ namespace ParkingLot
         private int indexOfPlateNumber = 1;
         public string Park(Car car, List<Dictionary<string, Car>> parkinglots)
         {
-            int lotIndex = 0;
-
-            while (parkinglots[lotIndex].Count == parkingCapacity)
-            {
-                lotIndex += 1;
-                if (lotIndex == parkinglots.Count - 1)
-                {
-                    break;
-                }
-            }
+            var lotIndex = FindLotIndex(parkinglots);
 
             if (parkinglots[lotIndex].Count < parkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
             {
@@ -40,16 +31,7 @@ namespace ParkingLot
 
         public string Park(Car car, List<Dictionary<string, Car>> parkinglots, out string message)
         {
-            int index = 0;
-            foreach (var parkinglot in parkinglots)
-            {
-                if (parkinglot.Count == parkingCapacity)
-                {
-                    index += 1;
-                }
-            }
-
-            var lotIndex = index > parkinglots.Count - 1 ? parkinglots.Count - 1 : index;
+            var lotIndex = FindLotIndex(parkinglots);
 
             if (parkinglots[lotIndex].Count < parkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
             {
@@ -107,6 +89,23 @@ namespace ParkingLot
         {
             message = "Please provide your parking ticket.";
             return null;
+        }
+
+        private int FindLotIndex(List<Dictionary<string, Car>> parkinglots)
+        {
+            int lotIndex = 0;
+
+            while (parkinglots[lotIndex].Count == parkingCapacity)
+            {
+                if (lotIndex == parkinglots.Count - 1)
+                {
+                    break;
+                }
+
+                lotIndex += 1;
+            }
+
+            return lotIndex;
         }
     }
 }
