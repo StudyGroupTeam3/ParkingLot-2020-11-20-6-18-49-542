@@ -11,7 +11,6 @@ namespace ParkingLot
         private List<CarLot<string, Car>> managerLots = new List<CarLot<string, Car>>()
         {
             new CarLot<string, Car>(20),
-            new CarLot<string, Car>(20),
         };
         public ParkingManager(string name) : base(name)
         {
