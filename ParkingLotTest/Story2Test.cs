@@ -13,14 +13,11 @@ namespace ParkingLotTest
         public void AC1_Should_return_Unrecognized_parking_ticket_when_give_wrong_ticket()
         {
             // given
-            var boy = new Boy(new List<Parkinglot>()
-            {
-                new Parkinglot(1, 10),
-            });
+            var boy = new Boy(1, new List<Parkinglot>() { new Parkinglot(1, 10), });
 
             // when
             var expected = "Unrecognized parking ticket";
-            var actual = boy.FetchCar("01103");
+            var actual = boy.FetchCar("0101103");
 
             // then
             Assert.Equal(expected, actual.ToString());
@@ -30,20 +27,17 @@ namespace ParkingLotTest
         public void AC1_Should_return_Unrecognized_parking_ticket_when_give_ticket_used()
         {
             // given
-            var boy = new Boy(new List<Parkinglot>()
-            {
-                new Parkinglot(1, 10),
-            });
+            var boy = new Boy(1, new List<Parkinglot>() { new Parkinglot(1, 10), });
             var car1 = new Car("BMW");
             var car2 = new Car("BMW");
 
             // when
             boy.ParkCar(car1);
-            boy.FetchCar("01001");
+            boy.FetchCar("0101001");
             boy.ParkCar(car2);
 
             var expected = "Unrecognized parking ticket";
-            var actual = boy.FetchCar("01001");
+            var actual = boy.FetchCar("0101001");
 
             // then
             Assert.Equal(expected, actual.ToString());
@@ -53,10 +47,7 @@ namespace ParkingLotTest
         public void AC2_Should_return_Please_provide_your_parking_ticket_when_give_null()
         {
             // given
-            var boy = new Boy(new List<Parkinglot>()
-            {
-                new Parkinglot(1, 10),
-            });
+            var boy = new Boy(1, new List<Parkinglot>() { new Parkinglot(1, 10), });
             var car = new Car("BMW");
 
             // when
@@ -73,7 +64,7 @@ namespace ParkingLotTest
         public void AC3_Should_return_Not_enough_Position_parking_when_park_car_into_parking_lot_without_position()
         {
             // given
-            var boy = new Boy(new List<Parkinglot>()
+            var boy = new Boy(1, new List<Parkinglot>()
             {
                 new Parkinglot(1, 10),
                 new Parkinglot(2, 10),

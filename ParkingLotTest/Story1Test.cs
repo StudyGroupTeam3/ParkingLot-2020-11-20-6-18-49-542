@@ -10,17 +10,12 @@ namespace ParkingLotTest
 {
     public class Story1Test : IDisposable
     {
-        private readonly List<Parkinglot> parkingLots;
+        private readonly List<Parkinglot> parkingLots = new List<Parkinglot>() { new Parkinglot(1, 10), };
         private readonly Boy boy;
 
         public Story1Test()
         {
-            parkingLots = new List<Parkinglot>
-            {
-                new Parkinglot(1, 10),
-            };
-
-            boy = new Boy(parkingLots);
+            boy = new Boy(1, parkingLots);
         }
 
         public void Dispose()
@@ -34,7 +29,7 @@ namespace ParkingLotTest
             var car = new Car("BMW");
 
             // when
-            var expected = "01001";
+            var expected = "0101001";
             var actual = boy.ParkCar(car);
 
             // then
@@ -110,7 +105,7 @@ namespace ParkingLotTest
             boy.ParkCar(car);
 
             var expected = "Unrecognized parking ticket";
-            var actual = boy.FetchCar("01050");
+            var actual = boy.FetchCar("0101050");
 
             // then
             Assert.Equal(expected, actual.ToString());

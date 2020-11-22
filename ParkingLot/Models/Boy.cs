@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 
 namespace ParkingLot.Models
@@ -8,12 +9,15 @@ namespace ParkingLot.Models
     public class Boy
     {
         private readonly List<Parkinglot> parkingLots;
-        public Boy(List<Parkinglot> parkingLots)
+        private readonly int boyNumber;
+        public Boy(int boyNumber, List<Parkinglot> parkingLots)
         {
+            this.boyNumber = boyNumber;
             this.parkingLots = parkingLots;
         }
 
         public List<Parkinglot> ParkingLots => parkingLots;
+        public int BoyNumber => boyNumber;
 
         public virtual string ParkCar(Car car)
         {
@@ -26,7 +30,7 @@ namespace ParkingLot.Models
 
             if (usableLot != null)
             {
-                var ticket = usableLot.AddCarGetTicket(car);
+                var ticket = usableLot.AddCarGetTicket(boyNumber, car);
                 return ticket;
             }
 

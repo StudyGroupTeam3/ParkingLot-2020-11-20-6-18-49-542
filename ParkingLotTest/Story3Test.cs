@@ -12,7 +12,7 @@ namespace ParkingLotTest
         public void AC1and2_Should_return_10cars_from_Lot1_1car_from_Lot2()
         {
             // given
-            var boy = new Boy(new List<Parkinglot>()
+            var boy = new Boy(1, new List<Parkinglot>()
             {
                 new Parkinglot(1, 10),
                 new Parkinglot(2, 10),

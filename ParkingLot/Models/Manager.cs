@@ -13,5 +13,10 @@ namespace ParkingLot.Models
         {
             managementList.Add(boy);
         }
+
+        public Boy CallBoy(int boyNumber)
+        {
+            return managementList[boyNumber - 1];
+        }
     }
 }

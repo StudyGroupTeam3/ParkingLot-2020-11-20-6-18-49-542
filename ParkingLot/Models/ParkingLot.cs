@@ -24,9 +24,9 @@ namespace ParkingLot.Models
         public double AvailablePosition => capacity - cars.Count;
         public double AvailablePositionRate => AvailablePosition / capacity;
 
-        public string AddCarGetTicket(Car car)
+        public string AddCarGetTicket(int boyNumber, Car car)
         {
-            var ticket = $"{lotNumber.ToString().PadLeft(2, '0')}{parkingNumber.ToString().PadLeft(3, '0')}";
+            var ticket = $"{boyNumber.ToString().PadLeft(2, '0')}{lotNumber.ToString().PadLeft(2, '0')}{parkingNumber.ToString().PadLeft(3, '0')}";
             cars.Add(new CarParked(ticket, car));
             parkingNumber++;
 
