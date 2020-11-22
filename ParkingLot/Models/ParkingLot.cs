@@ -9,24 +9,24 @@ namespace ParkingLot.Models
     {
         private readonly int capacity;
         private List<CarParked> cars = new List<CarParked>();
-        private int lotNumber;
         private int parkingNumber = 1;
 
-        public Parkinglot(int lotNumber, int capacity)
+        public Parkinglot(int capacity)
         {
-            this.lotNumber = lotNumber;
             this.capacity = capacity;
         }
 
+        public string LotNumber { get; set; }
+        public string BoyNumberBelonged { get; set; }
         public int Capacity => capacity;
-        public int LotNumber => lotNumber;
         public int CarsCount => cars.Count;
         public double AvailablePosition => capacity - cars.Count;
         public double AvailablePositionRate => AvailablePosition / capacity;
+        public string ParkingNumber => parkingNumber.ToString().PadLeft(3, '0');
 
-        public string AddCarGetTicket(int boyNumber, Car car)
+        public string AddCarGetTicket(Car car)
         {
-            var ticket = $"{boyNumber.ToString().PadLeft(2, '0')}{lotNumber.ToString().PadLeft(2, '0')}{parkingNumber.ToString().PadLeft(3, '0')}";
+            var ticket = $"{BoyNumberBelonged}{LotNumber}{ParkingNumber}";
             cars.Add(new CarParked(ticket, car));
             parkingNumber++;
 

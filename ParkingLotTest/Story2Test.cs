@@ -13,7 +13,8 @@ namespace ParkingLotTest
         public void AC1_Should_return_Unrecognized_parking_ticket_when_give_wrong_ticket()
         {
             // given
-            var boy = new Boy(1, new List<Parkinglot>() { new Parkinglot(1, 10), });
+            var boy = new Boy(1);
+            boy.AddParkingLot(new Parkinglot(10));
 
             // when
             var expected = "Unrecognized parking ticket";
@@ -27,7 +28,8 @@ namespace ParkingLotTest
         public void AC1_Should_return_Unrecognized_parking_ticket_when_give_ticket_used()
         {
             // given
-            var boy = new Boy(1, new List<Parkinglot>() { new Parkinglot(1, 10), });
+            var boy = new Boy(1);
+            boy.AddParkingLot(new Parkinglot(10));
             var car1 = new Car("BMW");
             var car2 = new Car("BMW");
 
@@ -47,7 +49,8 @@ namespace ParkingLotTest
         public void AC2_Should_return_Please_provide_your_parking_ticket_when_give_null()
         {
             // given
-            var boy = new Boy(1, new List<Parkinglot>() { new Parkinglot(1, 10), });
+            var boy = new Boy(1);
+            boy.AddParkingLot(new Parkinglot(10));
             var car = new Car("BMW");
 
             // when
@@ -64,11 +67,9 @@ namespace ParkingLotTest
         public void AC3_Should_return_Not_enough_Position_parking_when_park_car_into_parking_lot_without_position()
         {
             // given
-            var boy = new Boy(1, new List<Parkinglot>()
-            {
-                new Parkinglot(1, 10),
-                new Parkinglot(2, 10),
-            });
+            var boy = new Boy(1);
+            boy.AddParkingLot(new Parkinglot(10));
+            boy.AddParkingLot(new Parkinglot(10));
             var car = new Car("BMW");
             var count = 0;
 

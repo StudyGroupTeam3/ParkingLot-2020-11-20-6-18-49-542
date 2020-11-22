@@ -8,16 +8,15 @@ namespace ParkingLot.Models
 {
     public class Boy
     {
-        private readonly List<Parkinglot> parkingLots;
+        private readonly List<Parkinglot> parkingLots = new List<Parkinglot>();
         private readonly int boyNumber;
-        public Boy(int boyNumber, List<Parkinglot> parkingLots)
+        public Boy(int boyNumber)
         {
             this.boyNumber = boyNumber;
-            this.parkingLots = parkingLots;
         }
 
         public List<Parkinglot> ParkingLots => parkingLots;
-        public int BoyNumber => boyNumber;
+        public string BoyNumber => boyNumber.ToString().PadLeft(2, '0');
 
         public virtual string ParkCar(Car car)
         {
@@ -30,7 +29,7 @@ namespace ParkingLot.Models
 
             if (usableLot != null)
             {
-                var ticket = usableLot.AddCarGetTicket(boyNumber, car);
+                var ticket = usableLot.AddCarGetTicket(car);
                 return ticket;
             }
 
@@ -58,6 +57,13 @@ namespace ParkingLot.Models
         public int GetCarsCount()
         {
             return parkingLots.Select(lot => lot.CarsCount).Sum();
+        }
+
+        public void AddParkingLot(Parkinglot parkingLot)
+        {
+            parkingLot.LotNumber = (parkingLots.Count + 1).ToString().PadLeft(2, '0');
+            parkingLot.BoyNumberBelonged = BoyNumber;
+            parkingLots.Add(parkingLot);
         }
     }
 }

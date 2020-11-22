@@ -7,7 +7,7 @@ namespace ParkingLot.Models
 {
     public class SmartBoy : Boy
     {
-        public SmartBoy(int boyNumber, List<Parkinglot> parkingLots) : base(boyNumber, parkingLots)
+        public SmartBoy(int boyNumber) : base(boyNumber)
         {
         }
 
@@ -23,7 +23,7 @@ namespace ParkingLot.Models
 
             if (usableLot != null)
             {
-                var ticket = usableLot.AddCarGetTicket(BoyNumber, car);
+                var ticket = usableLot.AddCarGetTicket(car);
                 return ticket;
             }
 

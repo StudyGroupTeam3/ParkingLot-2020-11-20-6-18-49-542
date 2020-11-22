@@ -12,11 +12,9 @@ namespace ParkingLotTest
         public void AC1and2_Should_return_1car_from_Lot1_10cars_from_Lot2()
         {
             // given
-            var superBoy = new SuperBoy(1, new List<Parkinglot>()
-            {
-                new Parkinglot(1, 10),
-                new Parkinglot(2, 100),
-            });
+            var superBoy = new SuperBoy(1);
+            superBoy.AddParkingLot(new Parkinglot(10));
+            superBoy.AddParkingLot(new Parkinglot(100));
             var car = new Car("BMW");
             var count = 0;
 

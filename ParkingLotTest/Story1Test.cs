@@ -10,12 +10,12 @@ namespace ParkingLotTest
 {
     public class Story1Test : IDisposable
     {
-        private readonly List<Parkinglot> parkingLots = new List<Parkinglot>() { new Parkinglot(1, 10), };
         private readonly Boy boy;
 
         public Story1Test()
         {
-            boy = new Boy(1, parkingLots);
+            boy = new Boy(1);
+            boy.AddParkingLot(new Parkinglot(10));
         }
 
         public void Dispose()
