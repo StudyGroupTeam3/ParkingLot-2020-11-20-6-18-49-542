@@ -12,22 +12,12 @@ namespace ParkingLot
         private int capacity = 10;
         private Dictionary<string, string> carAndTicketInformation = new Dictionary<string, string>();
 
-        public List<string> GetTickets(string parkingLotName)
-        {
-            List<string> tickets = new List<string>();
-            for (int i = 0; i < capacity; i++)
-            {
-                tickets.Add($"ticket-{parkingLotName}-{i + 1}");
-            }
-
-            return tickets;
-        }
-
         public string ParkingCar(string car)
         {
             if (carAndTicketInformation.Count < capacity)
             {
-                List<string> tickets = GetTickets("1");
+                ParkingLots parkingLot = new ParkingLots("1");
+                List<string> tickets = parkingLot.GetTickets();
                 string ticket = tickets[carAndTicketInformation.Count];
                 carAndTicketInformation.Add(ticket, car);
                 return ticket;
@@ -35,7 +25,8 @@ namespace ParkingLot
 
             if (carAndTicketInformation.Count >= capacity && carAndTicketInformation.Count < 2 * capacity)
             {
-                List<string> tickets = GetTickets("2");
+                ParkingLots parkingLot = new ParkingLots("2");
+                List<string> tickets = parkingLot.GetTickets();
                 string ticket = tickets[carAndTicketInformation.Count - capacity];
                 carAndTicketInformation.Add(ticket, car);
                 return ticket;
