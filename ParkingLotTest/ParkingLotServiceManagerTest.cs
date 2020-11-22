@@ -89,5 +89,21 @@ namespace ParkingLotTest
             // then
             Assert.Equal("Not enough position.", errorMessage);
         }
+
+        [Fact]
+        public void Should_parking_lot_service_manager_act_as_a_standard_parking_boy()
+        {
+            // given
+            List<ParkingLot> parkingLotListForManager = new List<ParkingLot> { new ParkingLot(0, 0), new ParkingLot(1, 0) };
+            List<ParkingLot> parkingLotListForParkingBoy = new List<ParkingLot> { new ParkingLot(2), new ParkingLot(3) };
+            var standardParkingBoy = new ParkingBoy(parkingLotListForParkingBoy);
+            var parkingLotServiceManager = new ParkingLotServiceManager(parkingLotListForManager, new List<ParkingBoy>());
+            parkingLotServiceManager.AddParkingBoy(standardParkingBoy);
+            // when
+            string errorMessage;
+            parkingLotServiceManager.ParkCar(new Car(), out errorMessage);
+            // then
+            Assert.Equal("Not enough position.", errorMessage);
+        }
     }
 }
