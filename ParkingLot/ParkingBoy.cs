@@ -7,16 +7,13 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        protected int IndexOfPlateNumber
-        {
-            get { return 1; }
-        }
+        protected int IndexOfPlateNumber => 1;
 
         public virtual string Park(Car car, List<CarLot<string, Car>> parkinglots)
         {
             var lotIndex = FindLotIndex(parkinglots);
 
-            if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
+            if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && IsCarNotParked(car, parkinglots))
             {
                 try
                 {
@@ -37,7 +34,7 @@ namespace ParkingLot
         {
             var lotIndex = FindLotIndex(parkinglots);
 
-            if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
+            if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && IsCarNotParked(car, parkinglots))
             {
                 try
                 {
@@ -95,6 +92,19 @@ namespace ParkingLot
         {
             message = "Please provide your parking ticket.";
             return null;
+        }
+
+        protected bool IsCarNotParked(Car car, List<CarLot<string, Car>> parkinglots)
+        {
+            foreach (var lot in parkinglots)
+            {
+                if (lot.ContainsKey(car.PlateNumber))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private int FindLotIndex(List<CarLot<string, Car>> parkinglots)
