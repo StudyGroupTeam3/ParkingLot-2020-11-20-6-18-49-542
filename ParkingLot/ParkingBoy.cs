@@ -7,11 +7,6 @@ namespace ParkingLot
 {
     public class ParkingBoy
     {
-        protected int ParkingCapacity
-        {
-            get { return 10; }
-        }
-
         protected int IndexOfPlateNumber
         {
             get { return 1; }
@@ -21,7 +16,7 @@ namespace ParkingLot
         {
             var lotIndex = FindLotIndex(parkinglots);
 
-            if (parkinglots[lotIndex].Count < ParkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
+            if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
             {
                 try
                 {
@@ -42,7 +37,7 @@ namespace ParkingLot
         {
             var lotIndex = FindLotIndex(parkinglots);
 
-            if (parkinglots[lotIndex].Count < ParkingCapacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
+            if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && !parkinglots[lotIndex].ContainsKey(car.PlateNumber))
             {
                 try
                 {
@@ -106,7 +101,7 @@ namespace ParkingLot
         {
             int lotIndex = 0;
 
-            while (parkinglots[lotIndex].Count == ParkingCapacity)
+            while (parkinglots[lotIndex].Count == parkinglots[lotIndex].Capacity)
             {
                 if (lotIndex == parkinglots.Count - 1)
                 {
