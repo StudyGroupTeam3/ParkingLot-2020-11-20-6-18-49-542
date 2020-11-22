@@ -36,23 +36,27 @@ namespace ParkingLot
             return new ParkingTicket(parkingLotId, carId);
         }
 
-        public ICar FetchCar(ParkingTicket parkingTicket)
+        public ICar FetchCar(ParkingTicket parkingTicket, out string errorMessage)
         {
             if (parkingTicket is null)
             {
+                errorMessage = null;
                 return null;
             }
 
             if (!this.parkingLot.IsCarIdProvided(parkingTicket.CarId))
             {
+                errorMessage = "Unrecognized parking ticket.";
                 return null;
             }
 
             if (!this.parkingLot.HasCarId(parkingTicket.CarId))
             {
+                errorMessage = "Unrecognized parking ticket.";
                 return null;
             }
 
+            errorMessage = null;
             return this.parkingLot.GetCar(parkingTicket.CarId);
         }
     }
