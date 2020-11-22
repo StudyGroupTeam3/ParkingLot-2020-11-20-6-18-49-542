@@ -15,6 +15,7 @@ namespace ParkingLotTest
             //Given
             var boy = new ParkingBoy();
             var car = new Car(plateNumber);
+            string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(10),
@@ -26,7 +27,7 @@ namespace ParkingLotTest
             int expectedLoadsOfSecondParkinglot = loadsOfSecondParkinglot + 1;
 
             //When
-            string actualTicket = boy.Park(car, parkingLots);
+            string actualTicket = boy.Park(car, parkingLots, out message);
             var actualLoadsOfFirstParkinglot = parkingLots[0].Count;
             var actualLoadsOfSecondParkinglot = parkingLots[1].Count;
 
@@ -43,6 +44,7 @@ namespace ParkingLotTest
             //Given
             var boy = new ParkingBoy();
             var car = new Car(plateNumber);
+            string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
@@ -54,7 +56,7 @@ namespace ParkingLotTest
             int expectedLoadsOfSecondParkinglot = 10;
 
             //When
-            string actualTicket = boy.Park(car, parkingLots);
+            string actualTicket = boy.Park(car, parkingLots, out message);
             var actualLoadsOfFirstParkinglot = parkingLots[0].Count;
             var actualLoadsOfSecondParkinglot = parkingLots[1].Count;
 
@@ -71,6 +73,7 @@ namespace ParkingLotTest
             //Given
             var boy = new ParkingBoy();
             var car = new Car(plateNumber);
+            string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(10),
@@ -81,7 +84,7 @@ namespace ParkingLotTest
             int expectedLoadsOfSecondParkinglot = 10;
 
             //When
-            string actualTicket = boy.Park(car, parkingLots);
+            string actualTicket = boy.Park(car, parkingLots, out message);
             var actualLoadsOfFirstParkinglot = parkingLots[0].Count;
             var actualLoadsOfSecondParkinglot = parkingLots[1].Count;
 
@@ -99,17 +102,19 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string message = string.Empty;
+            string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
                 LotInitialize.FillLotWithCars(4),
             };
             var ticket = "SuperPark: RJ_12784";
-            boy.Park(new Car("RJ_12784"), parkingLots);
+            boy.Park(new Car("RJ_12784"), parkingLots, out message);
             Car expected = parkingLots[0]["RJ_12784"];
 
             //When
-            var result = boy.Fetch(ticket, parkingLots);
+            var result = boy.Fetch(ticket, parkingLots, out fectchmessage);
 
             //Then
             Assert.Equal(expected, result);
@@ -120,17 +125,19 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string message = string.Empty;
+            string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(10),
                 LotInitialize.FillLotWithCars(4),
             };
             var ticket = "SuperPark: RJ_12784";
-            boy.Park(new Car("RJ_12784"), parkingLots);
+            boy.Park(new Car("RJ_12784"), parkingLots, out message);
             Car expected = parkingLots[1]["RJ_12784"];
 
             //When
-            var result = boy.Fetch(ticket, parkingLots);
+            var result = boy.Fetch(ticket, parkingLots, out fectchmessage);
 
             //Then
             Assert.Equal(expected, result);

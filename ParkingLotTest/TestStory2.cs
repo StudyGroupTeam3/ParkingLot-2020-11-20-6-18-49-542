@@ -36,13 +36,14 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
                 LotInitialize.FillLotWithCars(4),
             };
             var ticket = "SuperPark: RJ_12784";
-            boy.Fetch(ticket, parkingLots);
+            boy.Fetch(ticket, parkingLots, out fectchmessage);
             Car expectedCar = null;
             string expectedMessage = "Unrecognized parking ticket.";
             string actualMessage;

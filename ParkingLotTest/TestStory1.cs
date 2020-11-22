@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace ParkingLotTest
@@ -14,6 +15,7 @@ namespace ParkingLotTest
         public void Should_ParkingBoyPark_Return_Right_Ticket(string plateNumber, string parkingTicket)
         {
             //Given
+            string message = string.Empty;
             var boy = new ParkingBoy();
             var car = new Car(plateNumber);
             var parkingLots = new List<CarLot<string, Car>>()
@@ -23,7 +25,7 @@ namespace ParkingLotTest
             string expected = parkingTicket;
 
             //When
-            string result = boy.Park(car, parkingLots);
+            string result = boy.Park(car, parkingLots, out message);
 
             //Then
             Assert.IsType<string>(result);
@@ -38,17 +40,19 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string message = string.Empty;
+            string fectchmessage = string.Empty;
             var fetchedCar = new Car(plateNumber);
             var ticket = parkingTicket;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 new CarLot<string, Car>(),
             };
-            boy.Park(fetchedCar, parkingLots);
+            boy.Park(fetchedCar, parkingLots, out message);
             Car expected = fetchedCar;
 
             //When
-            var result = boy.Fetch(ticket, parkingLots);
+            var result = boy.Fetch(ticket, parkingLots, out fectchmessage);
 
             //Then
             Assert.IsType<Car>(result);
@@ -63,16 +67,18 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string message = string.Empty;
+            string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3)
             };
             var ticket = "SuperPark: RJ_12784";
-            boy.Park(new Car("RJ_12784"), parkingLots);
+            boy.Park(new Car("RJ_12784"), parkingLots, out message);
             Car expected = parkingLots[0]["RJ_12784"];
 
             //When
-            var result = boy.Fetch(ticket, parkingLots);
+            var result = boy.Fetch(ticket, parkingLots, out fectchmessage);
 
             //Then
             Assert.Equal(expected, result);
@@ -86,6 +92,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3)
@@ -94,7 +101,7 @@ namespace ParkingLotTest
             Car expected = null;
 
             //When
-            var result = boy.Fetch(ticket, parkingLots);
+            var result = boy.Fetch(ticket, parkingLots, out fectchmessage);
 
             //Then
             Assert.Equal(expected, result);
@@ -105,6 +112,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            var fetchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3)
@@ -113,7 +121,7 @@ namespace ParkingLotTest
             Car expected = null;
 
             //When
-            var result = boy.Fetch(parkingLots);
+            var result = boy.Fetch(parkingLots, out fetchmessage);
 
             //Then
             Assert.Equal(expected, result);
@@ -127,17 +135,18 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string fectchmessage = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
             };
 
             var ticket = "SuperPark: RJ_12784";
-            boy.Fetch(ticket, parkingLots);
+            boy.Fetch(ticket, parkingLots, out fectchmessage);
             Car expected = null;
 
             //When
-            var result = boy.Fetch(ticket, parkingLots);
+            var result = boy.Fetch(ticket, parkingLots, out fectchmessage);
 
             //Then
             Assert.Equal(expected, result);
@@ -151,6 +160,7 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(10),
@@ -159,7 +169,7 @@ namespace ParkingLotTest
             string expected = null;
 
             //When
-            var result = boy.Park(car, parkingLots);
+            var result = boy.Park(car, parkingLots, out message);
 
             //Then
             Assert.Equal(expected, result);
@@ -170,16 +180,17 @@ namespace ParkingLotTest
         {
             //Given
             var boy = new ParkingBoy();
+            string message = string.Empty;
             var parkingLots = new List<CarLot<string, Car>>()
             {
                 LotInitialize.FillLotWithCars(3),
             };
             var car = new Car("RJ_12784");
-            boy.Park(car, parkingLots);
+            boy.Park(car, parkingLots, out message);
             string expected = null;
 
             //When
-            var result = boy.Park(car, parkingLots);
+            var result = boy.Park(car, parkingLots, out message);
 
             //Then
             Assert.Equal(expected, result);

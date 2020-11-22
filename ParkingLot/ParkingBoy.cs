@@ -8,21 +8,6 @@ namespace ParkingLot
     public class ParkingBoy
     {
         protected int IndexOfPlateNumber => 1;
-
-        public virtual string Park(Car car, List<CarLot<string, Car>> parkinglots)
-        {
-            var lotIndex = FindLotIndex(parkinglots);
-
-            if (parkinglots[lotIndex].Count < parkinglots[lotIndex].Capacity && IsCarNotParked(car, parkinglots))
-            {
-                ParkIntoPosition(car, parkinglots, lotIndex);
-
-                return $"SuperPark: {car.PlateNumber}";
-            }
-
-            return null;
-        }
-
         public virtual string Park(Car car, List<CarLot<string, Car>> parkinglots, out string message)
         {
             var lotIndex = FindLotIndex(parkinglots);
@@ -39,20 +24,6 @@ namespace ParkingLot
             return null;
         }
 
-        public Car Fetch(string ticket, List<CarLot<string, Car>> parkinglots)
-        {
-            var plateNumber = ticket.Split(" ")[IndexOfPlateNumber];
-            var targetParkinglot = parkinglots.Where(lot => lot.ContainsKey(plateNumber)).ToList();
-            if (targetParkinglot.Count == 0)
-            {
-                return null;
-            }
-
-            var car = targetParkinglot[0][plateNumber];
-            targetParkinglot[0].Remove(plateNumber);
-            return car;
-        }
-
         public Car Fetch(string ticket, List<CarLot<string, Car>> parkinglots, out string message)
         {
             var plateNumber = ticket.Split(" ")[IndexOfPlateNumber];
@@ -67,11 +38,6 @@ namespace ParkingLot
             targetParkinglot[0].Remove(plateNumber);
             message = "Here is your car";
             return car;
-        }
-
-        public Car Fetch(List<CarLot<string, Car>> parkinglot)
-        {
-            return null;
         }
 
         public Car Fetch(List<CarLot<string, Car>> parkinglot, out string message)
