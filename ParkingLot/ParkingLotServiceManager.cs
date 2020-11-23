@@ -18,7 +18,10 @@ namespace ParkingLot
 
         public void RemoveParkingBoy(ParkingBoy parkingBoy)
         {
-            managedParkingBoys.Remove(parkingBoy);
+            if (parkingBoy != null)
+            {
+                managedParkingBoys.Remove(parkingBoy);
+            }
         }
 
         public void GetParkingBoyToPark(Car car)
