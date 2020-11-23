@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 
 namespace ParkingLot
@@ -7,6 +8,7 @@ namespace ParkingLot
     public class ParkingBoy
     {
         private string name;
+        private string manager;
         private Dictionary<string, ParkingTicket> providedParkingTickets = new Dictionary<string, ParkingTicket>();
         public ParkingBoy(string inputName, ParkingLot parkingLot1, ParkingLot parkingLot2)
         {
@@ -15,7 +17,7 @@ namespace ParkingLot
             ManagedParkingLots.Add(parkingLot2);
         }
 
-        protected List<ParkingLot> ManagedParkingLots { get; } = new List<ParkingLot>();
+        protected List<ParkingLot> ManagedParkingLots { get; private set; } = new List<ParkingLot>();
 
         public ParkingTicket Park(Car car)
         {
@@ -64,6 +66,21 @@ namespace ParkingLot
             }
 
             return fetchedCar;
+        }
+
+        public void SetManager(string assignedManager)
+        {
+            this.manager = assignedManager;
+        }
+
+        public string GetManager()
+        {
+            return this.manager;
+        }
+
+        public void SetParkingLots(List<ParkingLot> assignedParkingLotsparkingLots)
+        {
+            this.ManagedParkingLots = assignedParkingLotsparkingLots;
         }
 
         protected void UpdateProvidedParkingTicket(ParkingTicket parkingTicket)
