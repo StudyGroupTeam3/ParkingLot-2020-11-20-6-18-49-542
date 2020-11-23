@@ -16,6 +16,11 @@ namespace ParkingLot
             managedParkingBoys.Add(parkingBoy);
         }
 
+        public void RemoveParkingBoy(ParkingBoy parkingBoy)
+        {
+            managedParkingBoys.Remove(parkingBoy);
+        }
+
         public void GetParkingBoyToPark(Car car)
         {
             managedParkingBoys[0].Park(car);
