@@ -8,7 +8,7 @@ namespace ParkingLot
     public class ParkingBoy
     {
         private string name;
-        private string manager;
+        private string manager = string.Empty;
         private Dictionary<string, ParkingTicket> providedParkingTickets = new Dictionary<string, ParkingTicket>();
         public ParkingBoy(string inputName, ParkingLot parkingLot1, ParkingLot parkingLot2)
         {
@@ -17,7 +17,7 @@ namespace ParkingLot
             ManagedParkingLots.Add(parkingLot2);
         }
 
-        protected List<ParkingLot> ManagedParkingLots { get; private set; } = new List<ParkingLot>();
+        public List<ParkingLot> ManagedParkingLots { get; private set; } = new List<ParkingLot>();
 
         public ParkingTicket Park(Car car)
         {
@@ -65,6 +65,7 @@ namespace ParkingLot
                 parkingTicket.UseTicket();
             }
 
+            UpdateProvidedParkingTicket(parkingTicket);
             return fetchedCar;
         }
 
